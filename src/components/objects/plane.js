@@ -13,9 +13,9 @@ class Plane {
     this.rotation = props.rotation;
     this.world = world;
     this.mass = props.mass;
-    this.density = props.density ? props.density : 1;
     this.amplitude = props.amplitude;
     this.timePeriod = props.timePeriod;
+    this.factor = props.factor ? props.factor : 1;
     this.linearDamping = props.linearDamping;
     this.material = new CANNON.Material();
   }
@@ -47,9 +47,9 @@ class Plane {
   }
   update() {
     // follows sine wave
-    // this.body.position.x = Math.sin(Date.now() / this.timePeriod) * this.amplitude;
-    this.body.position.y = Math.sin(Date.now() / this.timePeriod) * this.amplitude;
-
+    this.body.position.x = Math.sin(Date.now() / this.timePeriod) * this.amplitude;
+    this.body.position.y = Math.sin(Date.now() / this.timePeriod*this.factor) * this.amplitude/this.factor;
+    this.body.velocity.x = Math.sin(Date.now() / this.timePeriod) * this.amplitude;
 
     // threejs part copying cannon part
     this.mesh.position.copy(this.body.position);

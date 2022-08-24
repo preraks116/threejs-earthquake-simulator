@@ -15,14 +15,15 @@ class Box {
         this.dimension = props.dimension;
         this.speed = props.speed
         this.world = world;
-        this.mass = props.mass;
         this.type = props.type;
+        this.density = props.density ? props.density : 1;
         this.isHoverable = props.isHoverable ? props.isHoverable : false;
         this.isClickable = props.isClickable ? props.isClickable : false;
         this.linearDamping = props.linearDamping
         this.angularDamping = props.angularDamping
         this.material = new CANNON.Material();
         this.textures = props.textures;
+        this.mass = this.dimension.x * this.dimension.y * this.dimension.z * this.density;
     }
     render() {
         // three js rendering
@@ -41,6 +42,7 @@ class Box {
         this.mesh.userData.onClick = this.onClick.bind(this);
         this.scene.add(this.mesh);
 
+        console.log(this.mass);
         // cannon js rendering
         this.body = new CANNON.Body({
             mass: this.mass,
@@ -69,6 +71,8 @@ class Box {
                 }
             }
         }
+        // this.body.position.x = Math.sin(Date.now() / 1000) * 3;
+
         // threejs part copying cannon part
         this.mesh.position.copy(this.body.position);
         this.mesh.quaternion.copy(this.body.quaternion);

@@ -57,7 +57,7 @@ const sceneObjects = {
     // }, scene, world),
     cube2: new Box({
         // position: { x: 5, y: 0, z: -1.75 },
-        position: { x: 3, y: 6, z: 5 },
+        position: { x: 3, y: 1.5, z: 5 },
         color: 0xff0000,
         dimension: { x: 1, y: 3, z: 1 },
         speed: 1,
@@ -112,7 +112,7 @@ const sceneObjects = {
     }, scene, world),
     plane: new Plane({
         scene: scene,
-        position: { x: 3, y: -0.5, z: 3 },
+        position: { x: 3, y: 0, z: 3 },
         color: 0xffffff,
         dimension: { x: 50, y: 50 },
         rotation: {
@@ -123,8 +123,9 @@ const sceneObjects = {
         mass: 0,
         linearDamping: 0.3,
         amplitude: 0.5,
+        factor: 3,
         // amplitude: 0,
-        timePeriod: 10
+        timePeriod: 50
     }, scene, world),
 };
 
@@ -142,21 +143,21 @@ const lighting = {
 }
 
 // // const with all collision behaviors
-// const collisions = {
-//     cubePlane: new CANNON.ContactMaterial(
-//         sceneObjects['cube2'].material,
-//         sceneObjects['plane'].material,
-//         {
-//             friction: 0,
-//             // restitution: 0.9
-//         }
-//     )
-// }
+const collisions = {
+    cubePlane1: new CANNON.ContactMaterial(
+        sceneObjects['cube2'].material,
+        sceneObjects['plane'].material,
+        {
+            friction: 0.5,
+            // restitution: 0.9
+        }
+    ),
+}
 
 // adding collision behaviors to world
-// for (let key in collisions) {
-//     world.addContactMaterial(collisions[key]);
-// }
+for (let key in collisions) {
+    world.addContactMaterial(collisions[key]);
+}
 
 // camera
 const camera = new PerspCamera({

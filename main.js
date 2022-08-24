@@ -97,10 +97,34 @@ async function init() {
   // lighting.ambientLight.intensity = 1;
   // add gui
   const gui = new GUI();
+  const earthquakeFolder = gui.addFolder("Earthquake");
+  const earthquakeFolderProps = {
+    get Amplitude() {
+      return sceneObjects.plane.amplitude;
+    },
+    set Amplitude(value) {
+      sceneObjects.plane.amplitude = value;
+    },
+    get TimePeriod() {
+      return sceneObjects.plane.timePeriod;
+    },
+    set TimePeriod(value) {
+      sceneObjects.plane.timePeriod = value;
+    },
+    get Factor() {
+      return sceneObjects.plane.factor;
+    },
+    set Factor(value) {
+      sceneObjects.plane.factor = value;
+    }
+  }
+  earthquakeFolder.add(earthquakeFolderProps, "Factor", 0.1, 10, 0.1);
+  earthquakeFolder.add(earthquakeFolderProps, "TimePeriod", 10, 1000, 10);
+  earthquakeFolder.add(earthquakeFolderProps, "Amplitude", 0, 5, 0.01);
   const lightingFolder = gui.addFolder("Lighting");
   const directionalLightFolder = lightingFolder.addFolder("Directional Light");
   const directionalLightPositionFolder =
-    directionalLightFolder.addFolder("Position");
+  directionalLightFolder.addFolder("Position");
   const ambientLightFolder = lightingFolder.addFolder("Ambient Light");
   const propsAmbientLight = {
     get Intensity() {
