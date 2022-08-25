@@ -5,6 +5,8 @@ import * as CANNON from "cannon-es";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import Stats from "three/examples/jsm/libs/stats.module.js";
 import { GUI } from "three/examples/jsm/libs/lil-gui.module.min.js";
+import { Water } from 'three/examples/jsm/objects/Water.js';
+import { Sky } from 'three/examples/jsm/objects/Sky.js';
 import { textures } from "./src/utils/textures";
 import { setKey } from "./src/utils/keyControls";
 import { setZoom } from "./src/components/camera/orthographicCamera";
@@ -14,18 +16,62 @@ import * as GSAP from "gsap";
 import {
   sceneObjects,
   lighting,
-  camera,
+  // camera,
   scene,
   world,
   cannonDebugger,
 } from "./src/scenes/perspective";
 // import { sceneObjects, lighting, camera, scene, world, cannonDebugger } from './src/scenes/isometric';
 
+let camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 1, 20000 );
+camera.position.set( 30, 30, 100 );
 const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 let controls, stats;
 let intersects = [];
 const player = sceneObjects["player"];
 var mouse, raycaster;
+
+let sun = new THREE.Vector3();
+const waterGeometry = new THREE.PlaneGeometry( 10000, 10000 );
+let water = new Water(
+  waterGeometry,
+  {
+    textureWidth: 512,
+    textureHeight: 512,
+    waterNormals: new THREE.TextureLoader().load( 'src/assets/textures/waternormals.jpg', function ( texture ) {
+      texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+    } ),
+    sunDirection: new THREE.Vector3(),
+    sunColor: 0xffffff,
+    waterColor: 0x00ffff,
+    distortionScale: 3.7,
+    fog: scene.fog !== undefined
+  }
+);
+
+water.rotation.x = - Math.PI / 2;
+
+scene.add( water );
+
+const sky = new Sky();
+sky.scale.setScalar( 10000 );
+scene.add( sky );
+
+const skyUniforms = sky.material.uniforms;
+
+skyUniforms[ 'turbidity' ].value = 10;
+skyUniforms[ 'rayleigh' ].value = 2;
+skyUniforms[ 'mieCoefficient' ].value = 0.005;
+skyUniforms[ 'mieDirectionalG' ].value = 0.8;
+
+const parameters = {
+  elevation: 1,
+  azimuth: 180
+};
+
+const pmremGenerator = new THREE.PMREMGenerator( renderer );
+let renderTarget;
+
 
 function onMouseMove(event) {
   // calculate mouse position in normalized device coordinates
@@ -55,6 +101,24 @@ function onMouseMove(event) {
 //   }
 // }
 
+function updateSun() {
+
+  const phi = THREE.MathUtils.degToRad( 90 - parameters.elevation );
+  const theta = THREE.MathUtils.degToRad( parameters.azimuth );
+
+  sun.setFromSphericalCoords( 1, phi, theta );
+
+  sky.material.uniforms[ 'sunPosition' ].value.copy( sun );
+  water.material.uniforms[ 'sunDirection' ].value.copy( sun ).normalize();
+
+  if ( renderTarget !== undefined ) renderTarget.dispose();
+
+  renderTarget = pmremGenerator.fromScene( sky );
+
+  scene.environment = renderTarget.texture;
+}
+updateSun();
+
 async function init() {
   // initialization
   renderer.shadowMap.enabled = true;
@@ -71,10 +135,16 @@ async function init() {
   mouse = new THREE.Vector2();
 
   // load camera
-  camera.render();
+  // camera.render();
 
   // orbit controls
   // controls = new OrbitControls(camera.camera, renderer.domElement);
+  controls = new OrbitControls( camera, renderer.domElement );
+  controls.maxPolarAngle = Math.PI * 0.495;
+  controls.target.set( 0, 10, 0 );
+  controls.minDistance = 40.0;
+  controls.maxDistance = 200.0;
+  controls.update();
   // controls.listenToKeyEvents(window); // optional
 
   // lighting
@@ -201,7 +271,7 @@ async function init() {
   // event listeners
   // window.addEventListener("click", onClick);
   window.addEventListener("mousemove", onMouseMove, false);
-  window.addEventListener("wheel", (e) => setZoom(e, camera));
+  // window.addEventListener("wheel", (e) => setZoom(e, camera));
   window.addEventListener("keydown", (e) => setKey(e, true));
   window.addEventListener("resize", onWindowResize);
   window.addEventListener("keyup", (e) => setKey(e, false));
@@ -217,7 +287,8 @@ function resetFromHover() {
 }
 
 function getIntersects() {
-  raycaster.setFromCamera(mouse, camera.camera);
+  // raycaster.setFromCamera(mouse, camera.camera);
+  raycaster.setFromCamera(mouse, camera);
   intersects = raycaster.intersectObjects(scene.children);
 }
 
@@ -234,7 +305,9 @@ function animate() {
   requestAnimationFrame(animate);
   onHover();
   stats.begin();
-  renderer.render(scene, camera.camera);
+  water.material.uniforms[ 'time' ].value += 1.0 / 60.0;
+  // renderer.render(scene, camera.camera);
+  renderer.render(scene, camera);
   stats.end();
   resetFromHover();
   // controls.update();
@@ -250,8 +323,10 @@ function animate() {
 }
 
 function onWindowResize() {
-  camera.camera.aspect = window.innerWidth / window.innerHeight;
-  camera.camera.updateProjectionMatrix();
+  // camera.camera.aspect = window.innerWidth / window.innerHeight;
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  // camera.camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
 }
 

@@ -21,9 +21,14 @@ class Box {
         this.isClickable = props.isClickable ? props.isClickable : false;
         this.linearDamping = props.linearDamping
         this.angularDamping = props.angularDamping
+        this.amplitude = props.amplitude ? props.amplitude : 0;
+        this.timePeriod = props.timePeriod ? props.timePeriod : 0;
+        this.factor = props.factor ? props.factor : 1;
         this.material = new CANNON.Material();
         this.textures = props.textures;
-        this.mass = this.dimension.x * this.dimension.y * this.dimension.z * this.density;
+
+        // this.mass = this.dimension.x * this.dimension.y * this.dimension.z * this.density;
+        this.mass = props.mass;
     }
     render() {
         // three js rendering
@@ -70,6 +75,11 @@ class Box {
                     this.body.velocity.z = -1*this.speed*keyDict[key].z;
                 }
             }
+        }
+        else if(this.type === 'ground') {
+            this.body.position.x = Math.sin(Date.now() / this.timePeriod) * this.amplitude;
+            this.body.position.y = this.position.y + Math.sin(Date.now() / this.timePeriod*this.factor) * this.amplitude/this.factor;
+            this.body.velocity.x = Math.sin(Date.now() / this.timePeriod) * this.amplitude;
         }
         // this.body.position.x = Math.sin(Date.now() / 1000) * 3;
 

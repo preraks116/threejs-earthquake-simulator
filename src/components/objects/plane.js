@@ -48,7 +48,7 @@ class Plane {
   update() {
     // follows sine wave
     this.body.position.x = Math.sin(Date.now() / this.timePeriod) * this.amplitude;
-    this.body.position.y = Math.sin(Date.now() / this.timePeriod*this.factor) * this.amplitude/this.factor;
+    this.body.position.y += Math.sin(Date.now() / this.timePeriod*this.factor) * this.amplitude/this.factor;
     this.body.velocity.x = Math.sin(Date.now() / this.timePeriod) * this.amplitude;
 
     // threejs part copying cannon part

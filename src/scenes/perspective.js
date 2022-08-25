@@ -21,6 +21,7 @@ world.broadphase = new CANNON.NaiveBroadphase();
 const cannonDebugger = new CannonDebugger(scene, world, {
     onInit(body, mesh) {
       // Toggle visibiliy on "d" press
+      mesh.visible = false;
       document.addEventListener('keydown', (event) => {
         if (event.key === 'i') {
           mesh.visible = !mesh.visible
@@ -46,7 +47,7 @@ const sceneObjects = {
     //     speed: 5
     // }, scene, world),
     // cube: new Box({
-    //     position: { x: 0, y: 0, z: 3 },
+    //     position: { x: 0, y: 7, z: 3 },
     //     color: 0xff0000,
     //     dimension: { x: 10, y: 5, z: 0.5 },
     //     speed: 1,
@@ -57,7 +58,7 @@ const sceneObjects = {
     // }, scene, world),
     cube2: new Box({
         // position: { x: 5, y: 0, z: -1.75 },
-        position: { x: 3, y: 1.5, z: 5 },
+        position: { x: 3, y: 6.5, z: 5 },
         color: 0xff0000,
         dimension: { x: 1, y: 3, z: 1 },
         speed: 1,
@@ -68,7 +69,7 @@ const sceneObjects = {
     }, scene, world),
     cube3: new Box({
         // position: { x: 5, y: 0, z: -1.75 },
-        position: { x: -5, y: 4, z: -1.75 },
+        position: { x: -5, y: 9, z: -1.75 },
         color: 0xff0000,
         dimension: { x: 2, y: 8, z: 2 },
         speed: 1,
@@ -79,7 +80,7 @@ const sceneObjects = {
     }, scene, world),
     cube4: new Box({
         // position: { x: 5, y: 0, z: -1.75 },
-        position: { x: 6, y: 4, z: 5 },
+        position: { x: 6, y: 8, z: 5 },
         color: 0xff0000,
         dimension: { x: 3, y: 5, z: 3 },
         speed: 1,
@@ -90,7 +91,7 @@ const sceneObjects = {
     }, scene, world),
     cube5: new Box({
         // position: { x: 5, y: 0, z: -1.75 },
-        position: { x: -2.5, y: 4, z: 3 },
+        position: { x: -2.5, y: 9, z: 3 },
         color: 0xff0000,
         dimension: { x: 3.5, y: 7, z: 4.5 },
         speed: 1,
@@ -101,7 +102,7 @@ const sceneObjects = {
     }, scene, world),
     cube6: new Box({
         // position: { x: 5, y: 0, z: -1.75 },
-        position: { x: 1, y: 4, z: 3 },
+        position: { x: 1, y: 8, z: 3 },
         color: 0xff0000,
         dimension: { x: 2, y: 5, z: 2 },
         speed: 1,
@@ -112,7 +113,7 @@ const sceneObjects = {
     }, scene, world),
     plane: new Plane({
         scene: scene,
-        position: { x: 3, y: 0, z: 3 },
+        position: { x: 3, y: 5, z: 3 },
         color: 0xffffff,
         dimension: { x: 50, y: 50 },
         rotation: {
@@ -122,11 +123,25 @@ const sceneObjects = {
         },
         mass: 0,
         linearDamping: 0.3,
-        amplitude: 0.5,
-        factor: 3,
+        amplitude: 0.4,
+        factor: 7.5,
         // amplitude: 0,
-        timePeriod: 50
+        timePeriod: 100
     }, scene, world),
+    // plane: new Box({
+    //     // position: { x: 5, y: 0, z: -1.75 },
+    //     position: { x: 0, y: -1, z: 0 },
+    //     color: 0xffffff,
+    //     dimension: { x: 100, y: 5, z: 100 },
+    //     speed: 1,
+    //     mass: 0,
+    //     linearDamping: 0.3,
+    //     type: "ground",
+    //     amplitude: 0.4,
+    //     factor: 10,
+    //     timePeriod: 100
+    //     // textures: textures.brick
+    // }, scene, world)
 };
 
 const lighting = {
@@ -144,14 +159,14 @@ const lighting = {
 
 // // const with all collision behaviors
 const collisions = {
-    cubePlane1: new CANNON.ContactMaterial(
-        sceneObjects['cube2'].material,
-        sceneObjects['plane'].material,
-        {
-            friction: 0.5,
-            // restitution: 0.9
-        }
-    ),
+    // cubePlane1: new CANNON.ContactMaterial(
+    //     sceneObjects['cube2'].material,
+    //     sceneObjects['plane'].material,
+    //     {
+    //         friction: 0.5,
+    //         // restitution: 0.9
+    //     }
+    // ),
 }
 
 // adding collision behaviors to world
