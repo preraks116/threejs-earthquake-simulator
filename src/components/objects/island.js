@@ -10,7 +10,12 @@ class Island {
         this.extrudeSettings = props.extrudeSettings;
         this.color = props.color ? props.color : 0x00ff00;
         this.position = props.position ? props.position : { x: 0, y: 0, z: 0 };
+        this.dimension = props.dimension;
         this.rotation = props.rotation ? props.rotation : { x: 0, y: 0, z: 0 };
+        this.amplitude = props.amplitude;
+        this.timePeriod = props.timePeriod;
+        this.factor = props.factor ? props.factor : 1;
+        this.linearDamping = props.linearDamping;
         this.scene = scene;
         this.world = world;
     
@@ -23,37 +28,37 @@ class Island {
             this.geometryPoints[i].multiplyScalar(this.scale);
         }
 
-        // this.body = new CANNON.Body({
-        //     mass: 0,
-        //     shape: CannonUtils.CreateConvexPolyhedron(this.geometryPoints),
-        //     position: new CANNON.Vec3(this.position.x, this.position.y, this.position.z),
-        //     material: new CANNON.Material()
-        // });
-
         this.shape = new THREE.Shape(this.geometryPoints);
         this.geometry = new THREE.ExtrudeGeometry(this.shape, this.extrudeSettings);
+        this.mesh = new THREE.Mesh(this.geometry, new THREE.MeshPhongMaterial({ color: this.color }));
+
 
         this.body = new CANNON.Body({
             mass: 0,
-            shape: CannonUtils.CreateConvexPolyhedron(this.geometry),
+            // shape: CannonUtils.CreateConvexPolyhedron(this.geometry),
+            shape: new CANNON.Box(new CANNON.Vec3(this.dimension.x / 2, this.dimension.y / 2, 0.01)),
             position: new CANNON.Vec3(this.position.x, this.position.y, this.position.z),
-            material: new CANNON.Material()
+            material: new CANNON.Material(),
+            linearDamping: this.linearDamping
         });
         this.body.quaternion.setFromEuler(this.rotation.x, this.rotation.y, this.rotation.z);
-
     }
     render() {
-  
-    
-        let mesh = new THREE.Mesh(this.geometry, new THREE.MeshPhongMaterial({ color: this.color }));
-        mesh.position.set(this.position.x, this.position.y, this.position.z);
-        mesh.rotation.set(this.rotation.x, this.rotation.y, this.rotation.z);
+        // this.mesh.position.set(this.position.x, this.position.y, this.position.z);
+        // this.mesh.rotation.set(this.rotation.x, this.rotation.y, this.rotation.z);
         
-        this.scene.add(mesh);
+        this.scene.add(this.mesh);
         this.world.addBody(this.body);
     }
     update() {
-        // does nothing
+        // // follows sine wave
+        // this.body.position.x += Math.sin(Date.now() / this.timePeriod) * this.amplitude;
+        // this.body.position.y += Math.sin(Date.now() / this.timePeriod*this.factor) * this.amplitude/this.factor;
+        // this.body.velocity.x = Math.sin(Date.now() / this.timePeriod) * this.amplitude;
+
+        // // threejs part copying cannon part
+        this.mesh.position.copy(this.body.position);
+        this.mesh.quaternion.copy(this.body.quaternion);
     }
 }
 
