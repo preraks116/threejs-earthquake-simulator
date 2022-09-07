@@ -6,6 +6,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import Stats from "three/examples/jsm/libs/stats.module.js";
 import { GUI } from "three/examples/jsm/libs/lil-gui.module.min.js";
 import { Water } from 'three/examples/jsm/objects/Water.js';
+import { ConvexGeometry } from 'three/examples/jsm/geometries/ConvexGeometry.js';
 import { Sky } from 'three/examples/jsm/objects/Sky.js';
 import { textures } from "./src/utils/textures";
 import { setKey } from "./src/utils/keyControls";
@@ -33,8 +34,18 @@ var mouse, raycaster;
 
 let sun = new THREE.Vector3();
 const waterGeometry = new THREE.PlaneGeometry( 10000, 10000 );
+// make cylinder geometry
+const cylinderGeometry = new THREE.CylinderGeometry(100, 100, 10, 32);
+// sphere geometry
+const sphereGeometry = new THREE.SphereGeometry(100, 32, 32);
+// convex polyhedron
+const convexGeometry = new ConvexGeometry( [ new THREE.Vector3( 10, 0, 0 ), new THREE.Vector3( 0, 10, 0 ), new THREE.Vector3( 0, 0, 10 ) ] );
+
 let water = new Water(
   waterGeometry,
+  // cylinderGeometry,
+  // sphereGeometry,
+  // convexGeometry,
   {
     textureWidth: 512,
     textureHeight: 512,
@@ -118,6 +129,78 @@ function updateSun() {
   scene.environment = renderTarget.texture;
 }
 updateSun();
+
+// define island class
+class Island {
+  constructor(props, scene) {
+    this.points = props.points;
+    this.scale = props.scale ? props.scale : 1;
+    this.extrudeSettings = props.extrudeSettings;
+    this.color = props.color ? props.color : 0x00ff00;
+    this.position = props.position ? props.position : { x: 0, y: 0, z: 0 };
+    this.rotation = props.rotation ? props.rotation : { x: 0, y: 0, z: 0 };
+    this.scene = scene;
+
+    this.geometryPoints = [];
+
+    for (let i = 0; i < this.points.length; i++) {
+      this.geometryPoints.push(
+        new THREE.Vector2(this.points[i].x, this.points[i].y)
+      );
+      this.geometryPoints[i].multiplyScalar(this.scale);
+    }
+
+    this.shape = new THREE.Shape(this.geometryPoints);
+
+    let geometry = new THREE.ExtrudeGeometry(this.shape, this.extrudeSettings);
+
+    let mesh = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({ color: this.color }));
+    mesh.position.set(this.position.x, this.position.y, this.position.z);
+    mesh.rotation.set(this.rotation.x, this.rotation.y, this.rotation.z);
+    
+    this.scene.add(mesh);
+  }
+}
+
+// const island = new Island(
+// {
+//   points: [
+//     { x: 610, y: 320 },
+//     { x: 450, y: 300 },
+//     { x: 392, y: 392 },
+//     { x: 266, y: 438 },
+//     { x: 190, y: 570 },
+//     { x: 190, y: 600 },
+//     { x: 160, y: 620 },
+//     { x: 160, y: 650 },
+//     { x: 180, y: 640 },
+//     { x: 165, y: 680 },
+//     { x: 150, y: 670 },
+//     { x: 90, y: 737 },
+//     { x: 80, y: 795 },
+//     { x: 50, y: 835 },
+//     { x: 64, y: 870 },
+//     { x: 60, y: 945 },
+//     { x: 300, y: 945 },
+//     { x: 300, y: 743 },
+//     { x: 600, y: 473 },
+//     { x: 626, y: 425 },
+//     { x: 600, y: 370 },
+//     { x: 610, y: 320 },
+//   ],
+//   scale: 0.125, 
+//   extrudeSettings: {
+//     depth: 10,
+//     bevelEnabled: true,
+//     bevelSegments: 2,
+//     steps: 2,
+//     bevelSize: 1,
+//     bevelThickness: 1,
+//   },
+//   color: 0xf08000,
+//   position: { x: -90, y: 5, z: -150 },
+//   rotation: { x: Math.PI / 2, y: 0, z: 0 },
+// }, scene);
 
 async function init() {
   // initialization

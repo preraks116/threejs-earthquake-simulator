@@ -5,6 +5,7 @@ import { Vector3 } from 'three';
 import { Box } from "../components/objects/box";
 import { Ball } from "../components/objects/ball";
 import { Plane } from "../components/objects/plane";
+import { Island } from '../components/objects/island';
 import { GLTFModel } from '../components/objects/models/gltfModel';
 import { FBXModel } from '../components/objects/models/fbxModel';
 import { PerspCamera } from "../components/camera/perspectiveCamera";
@@ -32,30 +33,6 @@ const cannonDebugger = new CannonDebugger(scene, world, {
 
 // dictionary of all objects
 const sceneObjects = {
-    // ball: new Ball({
-    //     position: { x: 0, y: 1, z: 0 },
-    //     color: 0xff0000,
-    //     radius: 0.5,
-    //     mass: 1,
-    //     speed: new Vector3(0, 0, 0),
-    //     isHoverable: true,
-    //     isClickable: true,
-    //     linearDamping: 0.9,
-    //     angularDamping: 0.9,
-    //     textures: textures.ball,
-    //     type: "player",
-    //     speed: 5
-    // }, scene, world),
-    // cube: new Box({
-    //     position: { x: 0, y: 7, z: 3 },
-    //     color: 0xff0000,
-    //     dimension: { x: 10, y: 5, z: 0.5 },
-    //     speed: 1,
-    //     mass: 0,
-    //     linearDamping: 0.3,
-    //     type: "wall",
-    //     textures: textures.brick
-    // }, scene, world),
     cube2: new Box({
         // position: { x: 5, y: 0, z: -1.75 },
         position: { x: 3, y: 6.5, z: 5 },
@@ -128,20 +105,45 @@ const sceneObjects = {
         // amplitude: 0,
         timePeriod: 100
     }, scene, world),
-    // plane: new Box({
-    //     // position: { x: 5, y: 0, z: -1.75 },
-    //     position: { x: 0, y: -1, z: 0 },
-    //     color: 0xffffff,
-    //     dimension: { x: 100, y: 5, z: 100 },
-    //     speed: 1,
-    //     mass: 0,
-    //     linearDamping: 0.3,
-    //     type: "ground",
-    //     amplitude: 0.4,
-    //     factor: 10,
-    //     timePeriod: 100
-    //     // textures: textures.brick
-    // }, scene, world)
+    island : new Island(
+    {
+        points: [
+        { x: 610, y: 320 },
+        { x: 450, y: 300 },
+        { x: 392, y: 392 },
+        { x: 266, y: 438 },
+        { x: 190, y: 570 },
+        { x: 190, y: 600 },
+        { x: 160, y: 620 },
+        { x: 160, y: 650 },
+        { x: 180, y: 640 },
+        { x: 165, y: 680 },
+        { x: 150, y: 670 },
+        { x: 90, y: 737 },
+        { x: 80, y: 795 },
+        { x: 50, y: 835 },
+        { x: 64, y: 870 },
+        { x: 60, y: 945 },
+        { x: 300, y: 945 },
+        { x: 300, y: 743 },
+        { x: 600, y: 473 },
+        { x: 626, y: 425 },
+        { x: 600, y: 370 },
+        { x: 610, y: 320 },
+        ],
+        scale: 0.125, 
+        extrudeSettings: {
+        depth: 10,
+        bevelEnabled: true,
+        bevelSegments: 2,
+        steps: 2,
+        bevelSize: 1,
+        bevelThickness: 1,
+        },
+        color: 0xf08000,
+        position: { x: -90, y: 2.5, z: -150 },
+        rotation: { x: Math.PI / 2, y: 0, z: 0 },
+    }, scene, world)
 };
 
 const lighting = {
