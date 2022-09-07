@@ -31,17 +31,26 @@ class Island {
         // });
 
         this.shape = new THREE.Shape(this.geometryPoints);
+        this.geometry = new THREE.ExtrudeGeometry(this.shape, this.extrudeSettings);
+
+        this.body = new CANNON.Body({
+            mass: 0,
+            shape: CannonUtils.CreateConvexPolyhedron(this.geometry),
+            position: new CANNON.Vec3(this.position.x, this.position.y, this.position.z),
+            material: new CANNON.Material()
+        });
+        this.body.quaternion.setFromEuler(this.rotation.x, this.rotation.y, this.rotation.z);
+
     }
     render() {
   
-        let geometry = new THREE.ExtrudeGeometry(this.shape, this.extrudeSettings);
     
-        let mesh = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({ color: this.color }));
+        let mesh = new THREE.Mesh(this.geometry, new THREE.MeshPhongMaterial({ color: this.color }));
         mesh.position.set(this.position.x, this.position.y, this.position.z);
         mesh.rotation.set(this.rotation.x, this.rotation.y, this.rotation.z);
         
         this.scene.add(mesh);
-        // this.world.addBody(this.body);
+        this.world.addBody(this.body);
     }
     update() {
         // does nothing
