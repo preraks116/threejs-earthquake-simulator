@@ -17,6 +17,7 @@ class Island {
         this.factor = props.factor ? props.factor : 1;
         this.linearDamping = props.linearDamping;
         this.scene = scene;
+        this.textures = props.textures;
         this.world = world;
     
         this.geometryPoints = [];
@@ -30,7 +31,9 @@ class Island {
 
         this.shape = new THREE.Shape(this.geometryPoints);
         this.geometry = new THREE.ExtrudeGeometry(this.shape, this.extrudeSettings);
-        this.mesh = new THREE.Mesh(this.geometry, new THREE.MeshPhongMaterial({ color: this.color }));
+        this.material = this.textures ? new THREE.MeshStandardMaterial(this.textures): new THREE.MeshPhongMaterial({ color: this.color });
+        console.log(this.material);
+        this.mesh = new THREE.Mesh(this.geometry, this.material);
 
 
         this.body = new CANNON.Body({
@@ -41,23 +44,21 @@ class Island {
             material: new CANNON.Material(),
             linearDamping: this.linearDamping
         });
+        this.body.position.set(0, this.position.y, 0);
         this.body.quaternion.setFromEuler(this.rotation.x, this.rotation.y, this.rotation.z);
     }
     render() {
-        // this.mesh.position.set(this.position.x, this.position.y, this.position.z);
-        // this.mesh.rotation.set(this.rotation.x, this.rotation.y, this.rotation.z);
-        
         this.scene.add(this.mesh);
         this.world.addBody(this.body);
     }
     update() {
         // // follows sine wave
-        // this.body.position.x += Math.sin(Date.now() / this.timePeriod) * this.amplitude;
-        // this.body.position.y += Math.sin(Date.now() / this.timePeriod*this.factor) * this.amplitude/this.factor;
-        // this.body.velocity.x = Math.sin(Date.now() / this.timePeriod) * this.amplitude;
-
+        this.body.position.x = Math.sin(Date.now() / this.timePeriod) * this.amplitude;
+        this.body.position.y += Math.sin(Date.now() / this.timePeriod*this.factor) * this.amplitude/this.factor;
+        this.body.velocity.x = Math.sin(Date.now() / this.timePeriod) * this.amplitude;
+    
         // // threejs part copying cannon part
-        this.mesh.position.copy(this.body.position);
+        this.mesh.position.copy(this.body.position.vadd(new CANNON.Vec3(this.position.x, this.position.y - 2.5, this.position.z)));
         this.mesh.quaternion.copy(this.body.quaternion);
     }
 }

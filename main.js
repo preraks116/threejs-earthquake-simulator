@@ -11,6 +11,13 @@ import { Sky } from 'three/examples/jsm/objects/Sky.js';
 import { textures } from "./src/utils/textures";
 import { setKey } from "./src/utils/keyControls";
 import { setZoom } from "./src/components/camera/orthographicCamera";
+
+import ThreeMeshUI from 'three-mesh-ui'
+import FontJSON from "./src/utils/Roboto-msdf.json";
+import FontImage from "./src/utils/Roboto-msdf.png";
+import { VRButton } from 'three/examples/jsm/webxr/VRButton.js';
+import { BoxLineGeometry } from 'three/examples/jsm/geometries/BoxLineGeometry.js';
+
 import * as GSAP from "gsap";
 // import CannonDebugger from 'cannon-es-debugger'
 
@@ -130,77 +137,38 @@ function updateSun() {
 }
 updateSun();
 
-// define island class
-class Island {
-  constructor(props, scene) {
-    this.points = props.points;
-    this.scale = props.scale ? props.scale : 1;
-    this.extrudeSettings = props.extrudeSettings;
-    this.color = props.color ? props.color : 0x00ff00;
-    this.position = props.position ? props.position : { x: 0, y: 0, z: 0 };
-    this.rotation = props.rotation ? props.rotation : { x: 0, y: 0, z: 0 };
-    this.scene = scene;
 
-    this.geometryPoints = [];
+function makeTextPanel() {
+  const container = new ThreeMeshUI.Block({
+    width: 1.2,
+    height: 0.5,
+    padding: 0.05,
+    justifyContent: "center",
+    textAlign: "left",
+    fontFamily: FontJSON,
+    fontTexture: FontImage,
+  });
 
-    for (let i = 0; i < this.points.length; i++) {
-      this.geometryPoints.push(
-        new THREE.Vector2(this.points[i].x, this.points[i].y)
-      );
-      this.geometryPoints[i].multiplyScalar(this.scale);
-    }
+  container.position.set(0, 1, -1.8);
+  container.rotation.x = -0.55;
+  scene.add(container);
 
-    this.shape = new THREE.Shape(this.geometryPoints);
+  //
 
-    let geometry = new THREE.ExtrudeGeometry(this.shape, this.extrudeSettings);
+  container.add(
+    new ThreeMeshUI.Text({
+      content: "This library supports line-break-friendly-characters,",
+      fontSize: 0.055,
+    }),
 
-    let mesh = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({ color: this.color }));
-    mesh.position.set(this.position.x, this.position.y, this.position.z);
-    mesh.rotation.set(this.rotation.x, this.rotation.y, this.rotation.z);
-    
-    this.scene.add(mesh);
-  }
+    new ThreeMeshUI.Text({
+      content:
+        " As well as multi-font-size lines with consistent vertical spacing.",
+      fontSize: 0.08,
+    })
+  );
 }
 
-// const island = new Island(
-// {
-//   points: [
-//     { x: 610, y: 320 },
-//     { x: 450, y: 300 },
-//     { x: 392, y: 392 },
-//     { x: 266, y: 438 },
-//     { x: 190, y: 570 },
-//     { x: 190, y: 600 },
-//     { x: 160, y: 620 },
-//     { x: 160, y: 650 },
-//     { x: 180, y: 640 },
-//     { x: 165, y: 680 },
-//     { x: 150, y: 670 },
-//     { x: 90, y: 737 },
-//     { x: 80, y: 795 },
-//     { x: 50, y: 835 },
-//     { x: 64, y: 870 },
-//     { x: 60, y: 945 },
-//     { x: 300, y: 945 },
-//     { x: 300, y: 743 },
-//     { x: 600, y: 473 },
-//     { x: 626, y: 425 },
-//     { x: 600, y: 370 },
-//     { x: 610, y: 320 },
-//   ],
-//   scale: 0.125, 
-//   extrudeSettings: {
-//     depth: 10,
-//     bevelEnabled: true,
-//     bevelSegments: 2,
-//     steps: 2,
-//     bevelSize: 1,
-//     bevelThickness: 1,
-//   },
-//   color: 0xf08000,
-//   position: { x: -90, y: 5, z: -150 },
-//   rotation: { x: Math.PI / 2, y: 0, z: 0 },
-// }, scene);
 
 async function init() {
   // initialization
@@ -211,6 +179,7 @@ async function init() {
   renderer.shadowMap.type = THREE.PCFShadowMap;
   // console.log(renderer.shadowMap)
   renderer.setSize(window.innerWidth, window.innerHeight);
+  document.body.appendChild( VRButton.createButton( renderer ) );
   document.body.appendChild(renderer.domElement);
 
   // mouse pointer
@@ -239,6 +208,9 @@ async function init() {
   for (let key in sceneObjects) {
     sceneObjects[key].render();
   }
+
+
+  // makeTextPanel();
 
   stats = new Stats();
   // add custom panel
@@ -397,7 +369,7 @@ function animate() {
   if (player) {
     camera.update(player.body);
   }
-  world.step(1 / 60);
+  world.step(1 / 30);
 
   for (let key in sceneObjects) {
     sceneObjects[key].update();

@@ -12,6 +12,7 @@ import { PerspCamera } from "../components/camera/perspectiveCamera";
 import { ambientLight } from '../components/lights/ambientLight';
 import { directionalLight } from '../components/lights/directionalLight';
 import { textures } from '../utils/textures';
+import { fbxModels, gltfModels } from '../utils/models';
 
 const scene = new THREE.Scene();
 
@@ -33,61 +34,61 @@ const cannonDebugger = new CannonDebugger(scene, world, {
 
 // dictionary of all objects
 const sceneObjects = {
-    cube2: new Box({
-        // position: { x: 5, y: 0, z: -1.75 },
-        position: { x: 3, y: 6.5, z: 5 },
-        color: 0xff0000,
-        dimension: { x: 1, y: 3, z: 1 },
-        speed: 1,
-        mass: 5,
-        linearDamping: 0.3,
-        type: "wall",
-        textures: textures.brick
-    }, scene, world),
-    cube3: new Box({
-        // position: { x: 5, y: 0, z: -1.75 },
-        position: { x: -5, y: 9, z: -1.75 },
-        color: 0xff0000,
-        dimension: { x: 2, y: 8, z: 2 },
-        speed: 1,
-        mass: 5,
-        linearDamping: 0.3,
-        type: "wall",
-        textures: textures.brick
-    }, scene, world),
-    cube4: new Box({
-        // position: { x: 5, y: 0, z: -1.75 },
-        position: { x: 6, y: 8, z: 5 },
-        color: 0xff0000,
-        dimension: { x: 3, y: 5, z: 3 },
-        speed: 1,
-        mass: 5,
-        linearDamping: 0.3,
-        type: "wall",
-        textures: textures.brick
-    }, scene, world),
-    cube5: new Box({
-        // position: { x: 5, y: 0, z: -1.75 },
-        position: { x: -2.5, y: 9, z: 3 },
-        color: 0xff0000,
-        dimension: { x: 3.5, y: 7, z: 4.5 },
-        speed: 1,
-        mass: 5,
-        linearDamping: 0.3,
-        type: "wall",
-        textures: textures.brick
-    }, scene, world),
-    cube6: new Box({
-        // position: { x: 5, y: 0, z: -1.75 },
-        position: { x: 1, y: 8, z: 3 },
-        color: 0xff0000,
-        dimension: { x: 2, y: 5, z: 2 },
-        speed: 1,
-        mass: 5,
-        linearDamping: 0.3,
-        type: "wall",
-        textures: textures.brick
-    }, scene, world),
+    // cube2: new Box({
+    //     // position: { x: 5, y: 0, z: -1.75 },
+    //     position: { x: 3, y: 6.5, z: 5 },
+    //     color: 0xff0000,
+    //     dimension: { x: 1, y: 3, z: 1 },
+    //     speed: 1,
+    //     mass: 5,
+    //     linearDamping: 0.3,
+    //     type: "wall",
+    //     textures: textures.brick
+    // }, scene, world),
+    // cube3: new Box({
+    //     // position: { x: 5, y: 0, z: -1.75 },
+    //     position: { x: -5, y: 9, z: -1.75 },
+    //     color: 0xff0000,
+    //     dimension: { x: 2, y: 8, z: 2 },
+    //     speed: 1,
+    //     mass: 5,
+    //     linearDamping: 0.3,
+    //     type: "wall",
+    //     textures: textures.brick
+    // }, scene, world),
+    // cube4: new Box({
+    //     // position: { x: 5, y: 0, z: -1.75 },
+    //     position: { x: 6, y: 8, z: 5 },
+    //     color: 0xff0000,
+    //     dimension: { x: 3, y: 5, z: 3 },
+    //     speed: 1,
+    //     mass: 5,
+    //     linearDamping: 0.3,
+    //     type: "wall",
+    //     textures: textures.brick
+    // }, scene, world),
+    // cube5: new Box({
+    //     // position: { x: 5, y: 0, z: -1.75 },
+    //     position: { x: -2.5, y: 9, z: 3 },
+    //     color: 0xff0000,
+    //     dimension: { x: 3.5, y: 7, z: 4.5 },
+    //     speed: 1,
+    //     mass: 5,
+    //     linearDamping: 0.3,
+    //     type: "wall",
+    //     textures: textures.brick
+    // }, scene, world),
+    // cube6: new Box({
+    //     // position: { x: 5, y: 0, z: -1.75 },
+    //     position: { x: 1, y: 8, z: 3 },
+    //     color: 0xff0000,
+    //     dimension: { x: 2, y: 5, z: 2 },
+    //     speed: 1,
+    //     mass: 5,
+    //     linearDamping: 0.3,
+    //     type: "wall",
+    //     textures: textures.brick
+    // }, scene, world),
     plane: new Plane({
         scene: scene,
         position: { x: 3, y: 5, z: 3 },
@@ -100,10 +101,18 @@ const sceneObjects = {
         },
         mass: 0,
         linearDamping: 0.3,
-        amplitude: 0.4,
+        // amplitude: 0.4,
         factor: 7.5,
-        // amplitude: 0,
+        amplitude: 0,
         timePeriod: 100
+    }, scene, world),
+    model: new GLTFModel({
+        scene: scene,
+        position: { x: 0, y: 5, z: 0 },
+        // scale: { x: 0.1, y: 0.1, z: 0.1 },
+        linearDamping: 0.3,
+        mass: 5,
+        resourceURL: gltfModels.building,
     }, scene, world),
 
     // plane : new Island(
@@ -134,21 +143,22 @@ const sceneObjects = {
     //     ],
     //     scale: 0.125, 
     //     extrudeSettings: {
-    //     depth: 10,
-    //     bevelEnabled: true,
-    //     bevelSegments: 2,
-    //     steps: 2,
-    //     bevelSize: 1,
-    //     bevelThickness: 1,
+    //         depth: 10,
+    //         bevelEnabled: true,
+    //         bevelSegments: 2,
+    //         steps: 2,
+    //         bevelSize: 1,
+    //         bevelThickness: 1,
     //     },
     //     color: 0xf08000,
-    //     position: { x: -50, y: 2.5, z: -50 },
+    //     textures: textures.brick,
+    //     position: { x: -30, y: 1.5, z: -90 },
     //     dimension: { x: 50, y: 50 },
     //     rotation: { x: Math.PI / 2, y: 0, z: 0 },
     //     linearDamping: 0.3,
-    //     amplitude: 0.4,
+    //     // amplitude: 0.4,
     //     factor: 7.5,
-    //     // amplitude: 0,
+    //     amplitude: 0,
     //     timePeriod: 100
     // }, scene, world)
 };

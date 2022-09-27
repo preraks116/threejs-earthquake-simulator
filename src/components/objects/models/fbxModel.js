@@ -64,7 +64,7 @@ class FBXModel {
         this.world = world;
         this.mass = props.mass;
         this.linearDamping = props.linearDamping;
-        this.rotation = props.rotation;
+        this.rotation = props.rotation ? props.rotation : {x: 0, y: 0, z: 0};
         this.material = new CANNON.Material();
         this.isLoaded = false;
         this.colliders = props.colliders;
@@ -73,14 +73,14 @@ class FBXModel {
     render() {
         // wait for the fbxLoader to load the model
         // following function is called when the model is loaded
-        fbxLoader.load(this.resourceURL, (fbx) => {
+        fbxLoader.load(this.resourceURL.file, (fbx) => {
             // threejs rendering
             this.isLoaded = true;
             // the loaded model
             this.model = fbx;
             // set the position and scale
             this.model.position.set(this.position.x, this.position.y, this.position.z);
-            this.model.scale.set(this.scale.x, this.scale.y, this.scale.z);
+            this.model.scale.set(this.resourceURL.scale, this.resourceURL.scale, this.resourceURL.scale);
             // add the model to the scene
             // console.log(this.model);
             this.model.receiveShadow = true;
@@ -92,15 +92,17 @@ class FBXModel {
                 linearDamping: this.linearDamping,
                 material: this.material
             });        
-
-            addColliders(this.colliders, this.body);
+            if(this.colliders) {
+                addColliders(this.colliders, this.body);
+            }
+            
 
             // addShapes(this.model, this.body);   
             // const result = threeToCannon(this.model, {type: ShapeType.HULL});
             // const { shape, offset, quaterniion } = result;
             // this.body.addShape(shape, offset, quaterniion);
 
-            enableShadows(this.model);
+            // enableShadows(this.model);
             this.scene.add(this.model);
             this.body.quaternion.setFromEuler(this.rotation.x, this.rotation.y, this.rotation.z);
             this.world.addBody(this.body);
@@ -108,9 +110,10 @@ class FBXModel {
     }
     update() {
         if (this.isLoaded) {
-            // this.model.position.copy(this.body.position);
-            // this.model.quaternion.copy(this.body.quaternion);
+            this.model.position.copy(this.body.position);
+            this.model.quaternion.copy(this.body.quaternion);
         }
+        // console.log(this.scene);
     }
 }
 export { FBXModel };

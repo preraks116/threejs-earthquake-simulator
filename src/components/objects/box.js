@@ -47,7 +47,7 @@ class Box {
         this.mesh.userData.onClick = this.onClick.bind(this);
         this.scene.add(this.mesh);
 
-        console.log(this.mass);
+        // console.log(this.mass);
         // cannon js rendering
         this.body = new CANNON.Body({
             mass: this.mass,

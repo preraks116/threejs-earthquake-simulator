@@ -16,6 +16,7 @@
     "cannon-es-debugger": "^1.0.0",
     "gsap": "^3.10.4",
     "three": "^0.141.0",
+    "three-mesh-ui": "^6.4.5",
     "three-to-cannon": "^4.1.0"
   }
 }
