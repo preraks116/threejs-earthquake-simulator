@@ -12,7 +12,12 @@ import { PerspCamera } from "../components/camera/perspectiveCamera";
 import { ambientLight } from '../components/lights/ambientLight';
 import { directionalLight } from '../components/lights/directionalLight';
 import { textures } from '../utils/textures';
+import { Text } from '../components/objects/text';
+import FontJSON from '../utils/Roboto-msdf.json'
+import FontImage from '../utils/Roboto-msdf.png'
 import { fbxModels, gltfModels } from '../utils/models';
+
+
 
 const scene = new THREE.Scene();
 
@@ -114,6 +119,46 @@ const sceneObjects = {
         mass: 5,
         resourceURL: gltfModels.building,
     }, scene, world),
+
+    text: new Text({
+        width: 10.2,
+        height: 5.5,
+        padding: 0.5,
+        justifyContent: 'center',
+        textAlign: 'left',
+        fontFamily: FontJSON,
+        fontTexture: FontImage,
+        position: { x: 25, y: 20, z: 80.8 },
+        rotation: { x: -0.55, y: 0, z: 0 },
+        // text: {
+        //   first: {
+        //     content: 'This library supports line-break-friendly-characters,',
+        //     fontSize: 0.055
+        //   },
+        //   second: {
+        //     content: 'As well as multi-font-size lines with consistent vertical spacing.',
+        //     fontSize: 0.08
+        //   },
+        //   third: {
+        //     content: 'This library supports line-break-friendly-characters,',
+        //     fontSize: 0.06
+        //   }
+        // }
+        text: [
+          {
+            content: 'This library supports line-break-friendly-characters,',
+            fontSize: 0.555
+          },
+          {
+            content: 'As well as multi-font-size lines with consistent vertical spacing.',
+            fontSize: 0.58
+          },
+          {
+            content: 'This library supports line-break-friendly-characters,',
+            fontSize: 0.56
+          }
+        ]
+    }, scene)
 
     // plane : new Island(
     // {

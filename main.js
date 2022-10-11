@@ -170,6 +170,53 @@ function makeTextPanel() {
 }
 
 
+// text class 
+class Text {
+  constructor(props,scene) {
+    this.width = props.width;
+    this.height = props.height;
+    this.padding = props.padding;
+    this.justifyContent = props.justifyContent;
+    this.textAlign = props.textAlign;
+    this.fontFamily = props.fontFamily;
+    this.fontTexture = props.fontTexture;
+    this.position = props.position;
+    this.rotation = props.rotation;
+    this.text = props.text;
+    this.scene = scene;
+
+    this.container = new ThreeMeshUI.Block({
+      width: this.width,
+      height: this.height,
+      padding: this.padding,
+      justifyContent: this.justifyContent,
+      textAlign: this.textAlign,
+      fontFamily: this.fontFamily,
+      fontTexture: this.fontTexture,
+    });
+
+    
+  }
+  render() {
+    console.log(this.position);
+    this.container.position.set(this.position.x, this.position.y, this.position.z);
+    this.container.rotation.set(this.rotation.x, this.rotation.y, this.rotation.z);
+    this.scene.add(this.container);
+
+    for(let key in this.text){
+      let text = this.text[key];
+      this.container.add(new ThreeMeshUI.Text({
+        content: text.content,
+        fontSize: text.fontSize,
+      }));
+    }
+  }
+}
+
+
+
+
+
 async function init() {
   // initialization
   renderer.shadowMap.enabled = true;
@@ -178,6 +225,7 @@ async function init() {
   // renderer.outputEncoding = THREE.sRGBEncoding;
   renderer.shadowMap.type = THREE.PCFShadowMap;
   // console.log(renderer.shadowMap)
+  renderer.xr.enabled = true;
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild( VRButton.createButton( renderer ) );
   document.body.appendChild(renderer.domElement);
@@ -203,6 +251,49 @@ async function init() {
   for (let key in lighting) {
     lighting[key].render();
   }
+
+  // const text = new Text({
+  //   width: 10.2,
+  //   height: 5.5,
+  //   padding: 0.5,
+  //   justifyContent: 'center',
+  //   textAlign: 'left',
+  //   fontFamily: FontJSON,
+  //   fontTexture: FontImage,
+  //   position: { x: 25, y: 20, z: 80.8 },
+  //   rotation: { x: -0.55, y: 0, z: 0 },
+  //   // text: {
+  //   //   first: {
+  //   //     content: 'This library supports line-break-friendly-characters,',
+  //   //     fontSize: 0.055
+  //   //   },
+  //   //   second: {
+  //   //     content: 'As well as multi-font-size lines with consistent vertical spacing.',
+  //   //     fontSize: 0.08
+  //   //   },
+  //   //   third: {
+  //   //     content: 'This library supports line-break-friendly-characters,',
+  //   //     fontSize: 0.06
+  //   //   }
+  //   // }
+  //   text: [
+  //     {
+  //       content: 'This library supports line-break-friendly-characters,',
+  //       fontSize: 0.555
+  //     },
+  //     {
+  //       content: 'As well as multi-font-size lines with consistent vertical spacing.',
+  //       fontSize: 0.58
+  //     },
+  //     {
+  //       content: 'This library supports line-break-friendly-characters,',
+  //       fontSize: 0.56
+  //     }
+  //   ]
+  // }, scene);
+  // console.log(text);
+
+  // text.render()
 
   // renders all objects in scene
   for (let key in sceneObjects) {
@@ -360,6 +451,7 @@ function animate() {
   requestAnimationFrame(animate);
   onHover();
   stats.begin();
+  ThreeMeshUI.update();
   water.material.uniforms[ 'time' ].value += 1.0 / 60.0;
   // renderer.render(scene, camera.camera);
   renderer.render(scene, camera);
