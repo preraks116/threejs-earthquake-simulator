@@ -108,7 +108,7 @@ class GLTFModel {
       // });
 
       enableShadows(this.model);
-      console.log(this.model);
+      // console.log(this.model);
       // console.log(this.model);
       // addShapes(this.model, this.body);
       // const result = threeToCannon(this.model, {type: ShapeType.HULL});
@@ -123,6 +123,9 @@ class GLTFModel {
       console.log(box);
       // subtract max and min vectors
       this.dimension = new THREE.Vector3().subVectors(box.max, box.min);
+      if(this.dimension.y == 0) {
+        this.dimension.y = 0.5;
+      }
 
       // cannon js rendering
       this.body = new CANNON.Body({
@@ -144,7 +147,7 @@ class GLTFModel {
   update() {
     if (this.isLoaded) {
       // console.log(this.body);
-      console.log(this.model.up);
+      // console.log(this.model.up);
       // this.model.position.copy(this.body.position.vsub(new CANNON.Vec3(0, this.dimension.y / 2, 0)));
       this.model.position.copy(this.body.position);
       this.model.quaternion.copy(this.body.quaternion);

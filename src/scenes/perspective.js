@@ -22,7 +22,7 @@ import { fbxModels, gltfModels } from '../utils/models';
 const scene = new THREE.Scene();
 
 const world = new CANNON.World();
-world.gravity.set(0, -29.82, 0);
+world.gravity.set(0, -39.82, 0);
 world.broadphase = new CANNON.NaiveBroadphase();
 
 const cannonDebugger = new CannonDebugger(scene, world, {
@@ -83,41 +83,61 @@ const sceneObjects = {
     //     type: "wall",
     //     textures: textures.brick
     // }, scene, world),
-    // cube6: new Box({
-    //     // position: { x: 5, y: 0, z: -1.75 },
-    //     position: { x: 1, y: 8, z: 3 },
-    //     color: 0xff0000,
-    //     dimension: { x: 2, y: 5, z: 2 },
-    //     speed: 1,
-    //     mass: 5,
-    //     linearDamping: 0.3,
-    //     type: "wall",
-    //     textures: textures.brick
-    // }, scene, world),
-    plane: new Plane({
-        scene: scene,
-        position: { x: 3, y: 5, z: 3 },
+    cube6: new Box({
+        // position: { x: 5, y: 0, z: -1.75 },
+        position: { x: 1, y: 8, z: 3 },
         color: 0xffffff,
-        dimension: { x: 50, y: 50 },
-        rotation: {
-            x: -Math.PI / 2,
-            y: 0,
-            z: 0
-        },
+        dimension: { x: 200, y: 2, z: 200 },
+        speed: 1000,
         mass: 0,
         linearDamping: 0.3,
-        // amplitude: 0.4,
+        type: "ground",
+        // textures: textures.brick,
         factor: 7.5,
         amplitude: 0,
         timePeriod: 100
     }, scene, world),
+    // plane: new Plane({
+    //     scene: scene,
+    //     position: { x: 3, y: 5, z: 3 },
+    //     color: 0xffffff,
+    //     dimension: { x: 50, y: 50 },
+    //     rotation: {
+    //         x: -Math.PI / 2,
+    //         y: 0,
+    //         z: 0
+    //     },
+    //     mass: 0,
+    //     linearDamping: 0.3,
+    //     // amplitude: 0.4,
+    //     factor: 7.5,
+    //     amplitude: 0,
+    //     timePeriod: 100
+    // }, scene, world),
+  //   plane2: new Plane({
+  //     scene: scene,
+  //     position: { x: 3, y: 0.5, z: 3 },
+  //     color: 0xf00fff,
+  //     dimension: { x: 100, y: 100 },
+  //     rotation: {
+  //         x: -Math.PI / 2,
+  //         y: 0,
+  //         z: 0
+  //     },
+  //     mass: 0,
+  //     linearDamping: 0.3,
+  //     // amplitude: 0.4,
+  //     factor: 7.5,
+  //     amplitude: 0,
+  //     timePeriod: 100
+  // }, scene, world),
     model: new GLTFModel({
         scene: scene,
-        position: { x: 0, y: 20, z: 0 },
+        position: { x: 0, y: 10, z: 0 },
         // scale: { x: 0.1, y: 0.1, z: 0.1 },
         linearDamping: 0.3,
-        mass: 5000,
-        resourceURL: gltfModels.building2,
+        mass: 50,
+        resourceURL: gltfModels.human,
         colliders: {
           collider1: {
             type: "box",
@@ -126,32 +146,62 @@ const sceneObjects = {
           },   
         }
     }, scene, world),
+    model2: new GLTFModel({
+      scene: scene,
+      position: { x: 10, y: 20, z: 10 },
+      // scale: { x: 0.1, y: 0.1, z: 0.1 },
+      linearDamping: 0.3,
+      mass: 50,
+      resourceURL: gltfModels.skyE,
+      colliders: {
+        collider1: {
+          type: "box",
+          position: { x: 0, y: 5, z: 0 },
+          dimension: { x: 5, y: 10, z: 5 },
+        },   
+      }
+  }, scene, world),
+  model3: new GLTFModel({
+    scene: scene,
+    position: { x: 15, y: 20, z: 15 },
+    // scale: { x: 0.1, y: 0.1, z: 0.1 },
+    linearDamping: 0.3,
+    mass: 50,
+    resourceURL: gltfModels.road,
+    colliders: {
+      collider1: {
+        type: "box",
+        position: { x: 0, y: 5, z: 0 },
+        dimension: { x: 5, y: 10, z: 5 },
+      },   
+    }
+}, scene, world),
 
-    text: new Text({
-        width: 10.2,
-        height: 8.5,
-        padding: 1.5,
-        justifyContent: 'center',
-        textAlign: 'left',
-        fontFamily: FontJSON,
-        fontTexture: FontImage,
-        position: { x: 25, y: 25, z: 80.8 },
-        rotation: { x: -0.55, y: 0, z: 0 },
-        text: [
-          {
-            content: 'This library supports line-break-friendly-characters,',
-            fontSize: 0.555
-          },
-          {
-            content: 'As well as multi-font-size lines with consistent vertical spacing.',
-            fontSize: 0.58
-          },
-          {
-            content: 'This library supports line-break-friendly-characters,',
-            fontSize: 0.56
-          }
-        ]
-    }, scene)
+    // text: new Text({
+    //     width: 10.2,
+    //     height: 8.5,
+    //     padding: 1.5,
+    //     justifyContent: 'center',
+    //     textAlign: 'left',
+    //     fontFamily: FontJSON,
+    //     fontTexture: FontImage,
+    //     position: { x: 25, y: 25, z: 80.8 },
+    //     rotation: { x: 0, y: 0.3, z: 0 },
+    //     text: [
+    //       {
+    //         content: 'This library supports line-break-friendly-characters,',
+    //         fontSize: 0.555
+    //       },
+    //       {
+    //         content: 'As well as multi-font-size lines with consistent vertical spacing.',
+    //         fontSize: 0.58
+    //       },
+    //       {
+    //         content: 'This library supports line-break-friendly-characters,',
+    //         fontSize: 0.56
+    //       }
+    //     ]
+    // }, scene)
 
     // plane : new Island(
     // {
@@ -217,13 +267,28 @@ const lighting = {
 // // const with all collision behaviors
 const collisions = {
     // cubePlane1: new CANNON.ContactMaterial(
-    //     sceneObjects['cube2'].material,
-    //     sceneObjects['plane'].material,
-    //     {
-    //         friction: 0.5,
-    //         // restitution: 0.9
-    //     }
+    //   sceneObjects['cube6'].material,
+    //   sceneObjects['model2'].material,
+    //   {
+    //       friction: 1,
+    //       restitution: 0.9
+    //   }
     // ),
+}
+
+// any key with 'model' in it this property is added
+for(let key in sceneObjects) {
+  // if key has model in it
+  if(key.includes('model')) {
+    collisions[`cube6${key}`] = new CANNON.ContactMaterial(
+      sceneObjects['cube6'].material,
+      sceneObjects[key].material,
+      {
+          friction: 5,
+          restitution: 0.2  
+      }
+    )
+  }
 }
 
 // adding collision behaviors to world

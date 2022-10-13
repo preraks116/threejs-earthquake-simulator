@@ -25,6 +25,38 @@ const gltfModels = {
     building2: {
         file: 'building/untitled.glb',
         scale: 6
+    },
+    hospital: {
+        file: 'building/hospital.glb',
+        scale: 6
+    },
+    building4: {
+        file: 'building/pubg.glb',
+        scale: 6
+    },
+    road: {
+        file: 'building/road.glb',
+        scale: 6
+    },
+    tower: {
+        file: 'building/tower.glb',
+        scale: 6
+    },
+    skyE: {
+        file: 'building/skyE.glb',
+        scale: 6
+    },
+    wideA: {
+        file: 'building/wideAwning.glb',
+        scale: 6
+    },
+    smallA: {
+        file: 'building/smallA.glb',
+        scale: 5
+    },
+    human: {
+        file: 'inhabitants/human.glb',
+        scale: 0.35
     }
 }
 

@@ -78,7 +78,7 @@ class Box {
         }
         else if(this.type === 'ground') {
             this.body.position.x = Math.sin(Date.now() / this.timePeriod) * this.amplitude;
-            this.body.position.y = this.position.y + Math.sin(Date.now() / this.timePeriod*this.factor) * this.amplitude/this.factor;
+            this.body.position.y += Math.sin(Date.now() / this.timePeriod*this.factor) * this.amplitude/this.factor;
             this.body.velocity.x = Math.sin(Date.now() / this.timePeriod) * this.amplitude;
         }
         // this.body.position.x = Math.sin(Date.now() / 1000) * 3;

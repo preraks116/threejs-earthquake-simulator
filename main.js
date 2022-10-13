@@ -317,22 +317,22 @@ async function init() {
   const earthquakeFolder = gui.addFolder("Earthquake");
   const earthquakeFolderProps = {
     get Amplitude() {
-      return sceneObjects.plane.amplitude;
+      return sceneObjects.cube6.amplitude;
     },
     set Amplitude(value) {
-      sceneObjects.plane.amplitude = value;
+      sceneObjects.cube6.amplitude = value;
     },
     get TimePeriod() {
-      return sceneObjects.plane.timePeriod;
+      return sceneObjects.cube6.timePeriod;
     },
     set TimePeriod(value) {
-      sceneObjects.plane.timePeriod = value;
+      sceneObjects.cube6.timePeriod = value;
     },
     get Factor() {
-      return sceneObjects.plane.factor;
+      return sceneObjects.cube6.factor;
     },
     set Factor(value) {
-      sceneObjects.plane.factor = value;
+      sceneObjects.cube6.factor = value;
     }
   }
   earthquakeFolder.add(earthquakeFolderProps, "Factor", 0.1, 10, 0.1);
