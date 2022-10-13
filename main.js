@@ -32,7 +32,8 @@ import {
 // import { sceneObjects, lighting, camera, scene, world, cannonDebugger } from './src/scenes/isometric';
 
 let camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 1, 20000 );
-camera.position.set( 30, 30, 100 );
+camera.position.set( 30, 80, 100 );
+let casualties = 0, deaths = 0, damages = 0;
 // camera.position.set( 0, 400, 0 );
 
 const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
@@ -450,6 +451,26 @@ function onHover() {
   }
 }
 
+function getStats() {
+  casualties = 0;
+  deaths = 0;
+  damages = 0;
+  for(let key in sceneObjects) {
+    let object = sceneObjects[key];
+    if(object.type === 'human') {
+      if(object.isDead) {
+        deaths += 1;
+      }
+      else if(object.isFallen) {
+        casualties += 1;
+      }
+    }
+    else if(object.type === 'building' && object.isFallen) {
+      damages += object.cost;
+    }
+  }
+}
+
 function animate() {
   requestAnimationFrame(animate);
   onHover();
@@ -465,10 +486,15 @@ function animate() {
     camera.update(player.body);
   }
   world.step(1 / 60);
+  getStats();
   statsDOM.innerHTML = `
     <div>
       <p>Draw Calls: ${renderer.info.render.calls}</p>
       <p>Triangles: ${(renderer.info.render.triangles)}</p>
+      <br>
+      <p>Casualties: ${casualties*10} </p>
+      <p>Deaths: ${deaths*10} </p>
+      <p>Damages (INR) ${damages.toFixed(3)} Cr</p>
     </div>
   `;
 

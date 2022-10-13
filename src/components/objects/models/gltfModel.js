@@ -102,8 +102,12 @@ class GLTFModel {
     this.material = new CANNON.Material();
     this.isLoaded = false;
     this.colliders = props.colliders;
-    this.type = props.type ? props.type : 'building';
+    
     this.resourceURL = props.resourceURL;
+
+    this.position.y = props.position.y ? props.position.y : this.resourceURL.Y;
+    this.type = this.resourceURL.type;
+    this.cost = this.resourceURL.cost;
     
     this.fallVal = this.resourceURL.fallVal ? this.resourceURL.fallVal : 0;
     this.isFallen = 0;
@@ -176,15 +180,15 @@ class GLTFModel {
           // console.log(e);
           if(Math.abs(relativeVelocity) > this.resourceURL.killVal){
             // More energy
-            // console.log("fallen")
+            console.log("dead human")
             changeColor(this.model, 0xff0000);
             this.isFallen = 1;
             this.isDead = 1;
             // console.log(this.model);
           }
-          else if(Math.abs(relativeVelocity) > this.fallVal){
+          else if(Math.abs(relativeVelocity) > this.fallVal && !this.isFallen){
             // More energy
-            // console.log("fallen")
+            console.log("fallen human")
             if(this.type === 'human') {
               changeColor(this.model, 0xffff00);
             }

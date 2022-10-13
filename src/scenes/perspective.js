@@ -59,10 +59,9 @@ const sceneObjects = {
   ////////////////////////
   human1: new GLTFModel(
     {
-      position: { x: -30, y: 3.5, z: 30 },
+      position: { x: -30, z: 30 },
       linearDamping: 0.3,
       mass: 50,
-      type: "human",
       resourceURL: gltfModels.human,
     },
     scene,
@@ -71,7 +70,7 @@ const sceneObjects = {
 
   human2: new GLTFModel(
     {
-      position: { x: 11, y: 10, z: 30 },
+      position: { x: 11, z: 30 },
       linearDamping: 0.3,
       mass: 50,
       resourceURL: gltfModels.human,
@@ -82,7 +81,7 @@ const sceneObjects = {
 
   human3: new GLTFModel(
     {
-      position: { x: 10, y: 10, z: 30 },
+      position: { x: 9, z: 30 },
       linearDamping: 0.3,
       mass: 50,
       resourceURL: gltfModels.human,
@@ -93,7 +92,7 @@ const sceneObjects = {
 
   human4: new GLTFModel(
     {
-      position: { x: 12, y: 10, z: 30 },
+      position: { x: 13, z: 30 },
       linearDamping: 0.3,
       mass: 50,
       resourceURL: gltfModels.human,
@@ -105,21 +104,21 @@ const sceneObjects = {
 
   
 
-  // human6: new GLTFModel(
-  //   {
-  //     position: { x: 20, y: 25, z: 20 },
-  //     linearDamping: 0.3,
-  //     mass: 1,
-  //     resourceURL: gltfModels.human,
-  //   },
-  //   scene,
-  //   world
-  // ),
+  human6: new GLTFModel(
+    {
+      position: { x: 20, y: 19, z: 20 },
+      linearDamping: 0.3,
+      mass: 1,
+      resourceURL: gltfModels.human,
+    },
+    scene,
+    world
+  ),
 
 
   model2: new GLTFModel(
     {
-      position: { x: 10, y: 12, z: 10 },
+      position: { x: 10, z: 10 },
       mass: 50,
       resourceURL: gltfModels.skyE,
     },
@@ -128,7 +127,7 @@ const sceneObjects = {
   ),
   model3: new GLTFModel(
     {
-      position: { x: 20, y: 14, z: 10 },
+      position: { x: 20, z: 10 },
       mass: 50,
       resourceURL: gltfModels.building2,
     },
@@ -137,7 +136,7 @@ const sceneObjects = {
   ),
   model4: new GLTFModel(
     {
-      position: { x: 30, y: 14, z: 10 },
+      position: { x: 30, z: 10 },
       mass: 50,
       resourceURL: gltfModels.skyE,
     },
@@ -146,7 +145,7 @@ const sceneObjects = {
   ),
   model5: new GLTFModel(
     {
-      position: { x: 40, y: 14, z: 10 },
+      position: { x: 40, z: 10 },
       mass: 50,
       resourceURL: gltfModels.building2,
     },
@@ -155,7 +154,7 @@ const sceneObjects = {
   ),
   model6: new GLTFModel(
     {
-      position: { x: 10, y: 14, z: 20 },
+      position: { x: 10, z: 20 },
       mass: 50,
       resourceURL: gltfModels.smallA,
     },
@@ -164,7 +163,7 @@ const sceneObjects = {
   ),
   model7: new GLTFModel(
     {
-      position: { x: 20, y: 14, z: 20 },
+      position: { x: 20, z: 20 },
       mass: 50,
       resourceURL: gltfModels.hospital,
     },
@@ -174,7 +173,7 @@ const sceneObjects = {
 
   human5: new GLTFModel(
     {
-      position: { x: 40, y: 16, z: 18 },
+      position: { x: 40, y: 14, z: 18 },
       linearDamping: 0.3,
       mass: 1,
       resourceURL: gltfModels.human,
@@ -185,7 +184,7 @@ const sceneObjects = {
 
   human6: new GLTFModel(
     {
-      position: { x: 37, y: 16, z: 18 },
+      position: { x: 37, y: 14, z: 18 },
       linearDamping: 0.3,
       mass: 1,
       resourceURL: gltfModels.human,
@@ -196,7 +195,7 @@ const sceneObjects = {
 
   human7: new GLTFModel(
     {
-      position: { x: 43, y: 16, z: 18 },
+      position: { x: 43, y: 14, z: 18 },
       linearDamping: 0.3,
       mass: 1,
       resourceURL: gltfModels.human,
@@ -207,7 +206,7 @@ const sceneObjects = {
 
   model8: new GLTFModel(
     {
-      position: { x: 40, y: 8, z: 20 },
+      position: { x: 40, z: 20 },
       mass: 50,
       resourceURL: gltfModels.building4,
     },
@@ -216,7 +215,7 @@ const sceneObjects = {
   ),
   model9: new GLTFModel(
     {
-      position: { x: 25, y: 14, z: 30 },
+      position: { x: 25, z: 30 },
       mass: 50,
       resourceURL: gltfModels.tower,
     },
@@ -225,7 +224,7 @@ const sceneObjects = {
   ),
   model11: new GLTFModel(
     {
-      position: { x: 30, y: 14, z: 30 },
+      position: { x: 30, z: 30 },
       mass: 50,
       resourceURL: gltfModels.wideA,
     },
@@ -234,7 +233,7 @@ const sceneObjects = {
   ),
   model12: new GLTFModel(
     {
-      position: { x: 40, y: 8, z: 30 },
+      position: { x: 40, z: 30 },
       mass: 50,
       resourceURL: gltfModels.building2,
     },
@@ -243,7 +242,7 @@ const sceneObjects = {
   ),
   model12h1: new GLTFModel(
     {
-      position: { x: 39, y: 16, z: 30 },
+      position: { x: 39, y: 14, z: 30 },
       mass: 1,
       resourceURL: gltfModels.human,
     },
@@ -252,7 +251,7 @@ const sceneObjects = {
   ),
   model12h2: new GLTFModel(
     {
-      position: { x: 41, y: 16, z: 30 },
+      position: { x: 41, y: 14, z: 30 },
       mass: 1,
       resourceURL: gltfModels.human,
     },
@@ -261,7 +260,7 @@ const sceneObjects = {
   ),
   model13: new GLTFModel(
     {
-      position: { x: 40, y: 8, z: 40 },
+      position: { x: 40, z: 40 },
       mass: 50,
       resourceURL: gltfModels.building2,
     },
@@ -270,7 +269,7 @@ const sceneObjects = {
   ),
   model13h1: new GLTFModel(
     {
-      position: { x: 39, y: 16, z: 40 },
+      position: { x: 39, y: 14, z: 40 },
       mass: 1,
       resourceURL: gltfModels.human,
     },
@@ -279,7 +278,7 @@ const sceneObjects = {
   ),
   model13h2: new GLTFModel(
     {
-      position: { x: 41, y: 16, z: 40 },
+      position: { x: 41, y: 14, z: 40 },
       mass: 1,
       resourceURL: gltfModels.human,
     },
@@ -288,7 +287,7 @@ const sceneObjects = {
   ),
   model14: new GLTFModel(
     {
-      position: { x: 10, y: 14, z: 40 },
+      position: { x: 10, z: 40 },
       mass: 50,
       resourceURL: gltfModels.building2,
     },
@@ -297,7 +296,7 @@ const sceneObjects = {
   ),
   model15: new GLTFModel(
     {
-      position: { x: 20, y: 14, z: 40 },
+      position: { x: 20, z: 40 },
       mass: 50,
       resourceURL: gltfModels.building2,
     },
@@ -306,7 +305,7 @@ const sceneObjects = {
   ),
   model16: new GLTFModel(
     {
-      position: { x: 30, y: 14, z: 40 },
+      position: { x: 30, z: 40 },
       mass: 50,
       resourceURL: gltfModels.tower,
     },
@@ -315,7 +314,7 @@ const sceneObjects = {
   ),
   model17: new GLTFModel(
     {
-      position: { x: 7, y: 14, z: 30 },
+      position: { x: 7, z: 30 },
       rotation: { x: 0, y: Math.PI/2, z: 0 },
       mass: 50,
       resourceURL: gltfModels.wideA,
@@ -328,7 +327,7 @@ const sceneObjects = {
 
   model2_1: new GLTFModel(
     {
-      position: { x: 10, y: 14, z: -10 },
+      position: { x: 10, z: -10 },
       mass: 50,
       resourceURL: gltfModels.skyE,
     },
@@ -337,7 +336,7 @@ const sceneObjects = {
   ),
   model3_1: new GLTFModel(
     {
-      position: { x: 20, y: 14, z: -10 },
+      position: { x: 20, z: -10 },
       mass: 50,
       resourceURL: gltfModels.tower,
     },
@@ -347,7 +346,7 @@ const sceneObjects = {
 
   human8: new GLTFModel(
     {
-      position: { x: 30, y: 16, z: -8 },
+      position: { x: 30, y: 14, z: -8 },
       linearDamping: 0.3,
       mass: 1,
       resourceURL: gltfModels.human,
@@ -358,7 +357,7 @@ const sceneObjects = {
 
   human9: new GLTFModel(
     {
-      position: { x: 27, y: 16, z: -8 },
+      position: { x: 27, y: 14, z: -8 },
       linearDamping: 0.3,
       mass: 1,
       resourceURL: gltfModels.human,
@@ -369,7 +368,7 @@ const sceneObjects = {
 
   human10: new GLTFModel(
     {
-      position: { x: 33, y: 16, z: -8 },
+      position: { x: 33, y: 14, z: -8 },
       linearDamping: 0.3,
       mass: 1,
       resourceURL: gltfModels.human,
@@ -380,7 +379,7 @@ const sceneObjects = {
 
   human17: new GLTFModel(
     {
-      position: { x: 30, y: 16, z: -12 },
+      position: { x: 30, y: 14, z: -12 },
       linearDamping: 0.3,
       mass: 1,
       resourceURL: gltfModels.human,
@@ -391,7 +390,7 @@ const sceneObjects = {
 
   human18: new GLTFModel(
     {
-      position: { x: 27, y: 16, z: -12 },
+      position: { x: 27, y: 14, z: -12 },
       linearDamping: 0.3,
       mass: 1,
       resourceURL: gltfModels.human,
@@ -402,7 +401,7 @@ const sceneObjects = {
 
   human19: new GLTFModel(
     {
-      position: { x: 33, y: 16, z: -12 },
+      position: { x: 33, y: 14, z: -12 },
       linearDamping: 0.3,
       mass: 1,
       resourceURL: gltfModels.human,
@@ -413,7 +412,7 @@ const sceneObjects = {
 
   model4_1: new GLTFModel(
     {
-      position: { x: 30, y: 8, z: -10 },
+      position: { x: 30, z: -10 },
       mass: 50,
       resourceURL: gltfModels.building4,
     },
@@ -422,7 +421,7 @@ const sceneObjects = {
   ),
   model5_1: new GLTFModel(
     {
-      position: { x: 40, y: 14, z: -10 },
+      position: { x: 40, z: -10 },
       mass: 50,
       resourceURL: gltfModels.building2,
     },
@@ -431,7 +430,7 @@ const sceneObjects = {
   ),
   model6_1: new GLTFModel(
     {
-      position: { x: 10, y: 14, z: -20 },
+      position: { x: 10, z: -20 },
       mass: 50,
       resourceURL: gltfModels.tower,
     },
@@ -440,7 +439,7 @@ const sceneObjects = {
   ),
   model7_1: new GLTFModel(
     {
-      position: { x: 20, y: 14, z: -20 },
+      position: { x: 20, z: -20 },
       mass: 50,
       resourceURL: gltfModels.hospital,
     },
@@ -450,7 +449,7 @@ const sceneObjects = {
 
   human11: new GLTFModel(
     {
-      position: { x: 40, y: 16, z: -18 },
+      position: { x: 40, y: 14, z: -18 },
       linearDamping: 0.3,
       mass: 1,
       resourceURL: gltfModels.human,
@@ -461,7 +460,7 @@ const sceneObjects = {
 
   human12: new GLTFModel(
     {
-      position: { x: 37, y: 16, z: -18 },
+      position: { x: 37, y: 14, z: -18 },
       linearDamping: 0.3,
       mass: 1,
       resourceURL: gltfModels.human,
@@ -472,7 +471,7 @@ const sceneObjects = {
 
   human13: new GLTFModel(
     {
-      position: { x: 43, y: 16, z: -18 },
+      position: { x: 43, y: 14, z: -18 },
       linearDamping: 0.3,
       mass: 1,
       resourceURL: gltfModels.human,
@@ -483,7 +482,7 @@ const sceneObjects = {
   
   human14: new GLTFModel(
     {
-      position: { x: 40, y: 16, z: -22 },
+      position: { x: 40, y: 14, z: -22 },
       linearDamping: 0.3,
       mass: 1,
       resourceURL: gltfModels.human,
@@ -494,7 +493,7 @@ const sceneObjects = {
 
   human15: new GLTFModel(
     {
-      position: { x: 37, y: 16, z: -22 },
+      position: { x: 37, y: 14, z: -22 },
       linearDamping: 0.3,
       mass: 1,
       resourceURL: gltfModels.human,
@@ -505,7 +504,7 @@ const sceneObjects = {
 
   human16: new GLTFModel(
     {
-      position: { x: 43, y: 16, z: -22 },
+      position: { x: 43, y: 14, z: -22 },
       linearDamping: 0.3,
       mass: 1,
       resourceURL: gltfModels.human,
@@ -519,7 +518,7 @@ const sceneObjects = {
 
   model8_1: new GLTFModel(
     {
-      position: { x: 40, y: 8, z: -20 },
+      position: { x: 40, z: -20 },
       mass: 50,
       resourceURL: gltfModels.building4,
     },
@@ -528,7 +527,7 @@ const sceneObjects = {
   ),
   model9_1: new GLTFModel(
     {
-      position: { x: 25, y: 14, z: -30 },
+      position: { x: 25, z: -30 },
       mass: 50,
       resourceURL: gltfModels.smallA,
     },
@@ -537,7 +536,7 @@ const sceneObjects = {
   ),
   model11_1: new GLTFModel(
     {
-      position: { x: 30, y: 14, z: -30 },
+      position: { x: 30, z: -30 },
       mass: 50,
       resourceURL: gltfModels.wideA,
     },
@@ -546,7 +545,7 @@ const sceneObjects = {
   ),
   model12_1: new GLTFModel(
     {
-      position: { x: 40, y: 8, z: -30 },
+      position: { x: 40, z: -30 },
       mass: 50,
       resourceURL: gltfModels.building2,
     },
@@ -555,7 +554,7 @@ const sceneObjects = {
   ),
   model12_1h1: new GLTFModel(
     {
-      position: { x: 39, y: 16, z: -30 },
+      position: { x: 39, y: 14, z: -30 },
       mass: 1,
       resourceURL: gltfModels.human,
     },
@@ -564,7 +563,7 @@ const sceneObjects = {
   ),
   model12_1h2: new GLTFModel(
     {
-      position: { x: 41, y: 16, z: -30 },
+      position: { x: 41, y: 14, z: -30 },
       mass: 1,
       resourceURL: gltfModels.human,
     },
@@ -573,7 +572,7 @@ const sceneObjects = {
   ),
   model13_1: new GLTFModel(
     {
-      position: { x: 40, y: 8, z: -40 },
+      position: { x: 40, z: -40 },
       mass: 50,
       resourceURL: gltfModels.building2,
     },
@@ -582,7 +581,7 @@ const sceneObjects = {
   ),
   model13_1h1: new GLTFModel(
     {
-      position: { x: 39, y: 16, z: -40 },
+      position: { x: 39, y: 14, z: -40 },
       mass: 1,
       resourceURL: gltfModels.human,
     },
@@ -591,7 +590,7 @@ const sceneObjects = {
   ),
   model13_1h2: new GLTFModel(
     {
-      position: { x: 41, y: 16, z: -40 },
+      position: { x: 41, y: 14, z: -40 },
       mass: 1,
       resourceURL: gltfModels.human,
     },
@@ -600,7 +599,7 @@ const sceneObjects = {
   ),
   model14_1: new GLTFModel(
     {
-      position: { x: 10, y: 14, z: -40 },
+      position: { x: 10, z: -40 },
       mass: 50,
       resourceURL: gltfModels.building2,
     },
@@ -609,7 +608,7 @@ const sceneObjects = {
   ),
   model15_1: new GLTFModel(
     {
-      position: { x: 20, y: 14, z: -40 },
+      position: { x: 20, z: -40 },
       mass: 50,
       resourceURL: gltfModels.tower,
     },
@@ -618,7 +617,7 @@ const sceneObjects = {
   ),
   model16_1: new GLTFModel(
     {
-      position: { x: 30, y: 14, z: -40 },
+      position: { x: 30, z: -40 },
       mass: 50,
       resourceURL: gltfModels.building2,
     },
@@ -627,7 +626,7 @@ const sceneObjects = {
   ),
   model17_1: new GLTFModel(
     {
-      position: { x: 7, y: 14, z: -30 },
+      position: { x: 7, z: -30 },
       rotation: { x: 0, y: Math.PI/2, z: 0 },
       mass: 50,
       resourceURL: gltfModels.wideA,
@@ -638,7 +637,7 @@ const sceneObjects = {
 
   model30: new GLTFModel(
     {
-      position: { x: -10, y: 8, z: -7 },
+      position: { x: -10, z: -7 },
       mass: 50,
       resourceURL: gltfModels.building4,
     },
@@ -648,7 +647,7 @@ const sceneObjects = {
 
   human20: new GLTFModel(
     {
-      position: { x: -25, y: 16, z: -9 },
+      position: { x: -25, y: 14, z: -9 },
       linearDamping: 0.3,
       mass: 1,
       resourceURL: gltfModels.human,
@@ -659,7 +658,7 @@ const sceneObjects = {
 
   human21: new GLTFModel(
     {
-      position: { x: -22, y: 16, z: -9 },
+      position: { x: -22, y: 14, z: -9 },
       linearDamping: 0.3,
       mass: 1,
       resourceURL: gltfModels.human,
@@ -670,7 +669,7 @@ const sceneObjects = {
 
   human22: new GLTFModel(
     {
-      position: { x: -27, y: 16, z: -5 },
+      position: { x: -27, y: 14, z: -5 },
       linearDamping: 0.3,
       mass: 1,
       resourceURL: gltfModels.human,
@@ -681,7 +680,7 @@ const sceneObjects = {
 
   model31: new GLTFModel(
     {
-      position: { x: -25, y: 8, z: -7 },
+      position: { x: -25, z: -7 },
       mass: 50,
       resourceURL: gltfModels.building4,
     },
@@ -690,7 +689,7 @@ const sceneObjects = {
   ),
   model32: new GLTFModel(
     {
-      position: { x: -35, y: 14, z: -7 },
+      position: { x: -35, z: -7 },
       mass: 50,
       resourceURL: gltfModels.smallA,
     },
@@ -699,7 +698,7 @@ const sceneObjects = {
   ),
   model33: new GLTFModel(
     {
-      position: { x: -42, y: 14, z: -7 },
+      position: { x: -42, z: -7 },
       mass: 50,
       resourceURL: gltfModels.tower,
     },
@@ -708,7 +707,7 @@ const sceneObjects = {
   ),
   model34: new GLTFModel(
     {
-      position: { x: -9, y: 14, z: -17 },
+      position: { x: -9, z: -17 },
       mass: 50,
       resourceURL: gltfModels.tower,
     },
@@ -717,7 +716,7 @@ const sceneObjects = {
   ),
   model35: new GLTFModel(
     {
-      position: { x: -19, y: 14, z: -17 },
+      position: { x: -19, z: -17 },
       mass: 50,
       resourceURL: gltfModels.skyE,
     },
@@ -726,7 +725,7 @@ const sceneObjects = {
   ),
   model36: new GLTFModel(
     {
-      position: { x: -43, y: 14, z: -20 },
+      position: { x: -43, z: -20 },
       mass: 50,
       resourceURL: gltfModels.hospital,
     },
@@ -735,7 +734,7 @@ const sceneObjects = {
   ),
   model37: new GLTFModel(
     {
-      position: { x: -28, y: 14, z: -17 },
+      position: { x: -28, z: -17 },
       mass: 50,
       resourceURL: gltfModels.smallA,
     },
@@ -744,7 +743,7 @@ const sceneObjects = {
   ),
   model38: new GLTFModel(
     {
-      position: { x: -9, y: 14, z: -27 },
+      position: { x: -9, z: -27 },
       mass: 50,
       resourceURL: gltfModels.building2,
     },
@@ -753,7 +752,7 @@ const sceneObjects = {
   ),
   model39: new GLTFModel(
     {
-      position: { x: -40, y: 14, z: -40 },
+      position: { x: -40, z: -40 },
       mass: 50,
       resourceURL: gltfModels.skyE,
     },
@@ -762,7 +761,7 @@ const sceneObjects = {
   ),
   model40: new GLTFModel(
     {
-      position: { x: -28, y: 14, z: -40 },
+      position: { x: -28, z: -40 },
       mass: 50,
       resourceURL: gltfModels.building4,
     },
@@ -771,7 +770,7 @@ const sceneObjects = {
   ),
   model41: new GLTFModel(
     {
-      position: { x: -17, y: 14, z: -40 },
+      position: { x: -17, z: -40 },
       mass: 50,
       resourceURL: gltfModels.building2,
     },
@@ -780,7 +779,7 @@ const sceneObjects = {
   ),
   model42: new GLTFModel(
     {
-      position: { x: -8, y: 14, z: -40 },
+      position: { x: -8, z: -40 },
       mass: 50,
       resourceURL: gltfModels.building2,
     },
@@ -789,7 +788,7 @@ const sceneObjects = {
   ),
   model43: new GLTFModel(
     {
-      position: { x: -38, y: 14, z: -30 },
+      position: { x: -38, z: -30 },
       mass: 50,
       resourceURL: gltfModels.smallA,
     },
@@ -798,7 +797,7 @@ const sceneObjects = {
   ),
   model44: new GLTFModel(
     {
-      position: { x: -45, y: 14, z: -30 },
+      position: { x: -45, z: -30 },
       mass: 50,
       resourceURL: gltfModels.smallA,
     },
@@ -807,7 +806,7 @@ const sceneObjects = {
   ),
   model45: new GLTFModel(
     {
-      position: { x: -25, y: 14, z: -30 },
+      position: { x: -25, z: -30 },
       mass: 50,
       resourceURL: gltfModels.human,
     },
@@ -816,7 +815,7 @@ const sceneObjects = {
   ),
   model46: new GLTFModel(
     {
-      position: { x: -27, y: 14, z: -30 },
+      position: { x: -27, z: -30 },
       mass: 50,
       resourceURL: gltfModels.human,
     },
@@ -825,7 +824,7 @@ const sceneObjects = {
   ),
   model47: new GLTFModel(
     {
-      position: { x: -29, y: 14, z: -30 },
+      position: { x: -29, z: -30 },
       mass: 50,
       resourceURL: gltfModels.human,
     },
@@ -834,7 +833,7 @@ const sceneObjects = {
   ),
   model48: new GLTFModel(
     {
-      position: { x: -23, y: 14, z: -30 },
+      position: { x: -23, z: -30 },
       mass: 50,
       resourceURL: gltfModels.human,
     },
@@ -843,7 +842,7 @@ const sceneObjects = {
   ),
   model49: new GLTFModel(
     {
-      position: { x: -21, y: 14, z: -30 },
+      position: { x: -21, z: -30 },
       mass: 50,
       resourceURL: gltfModels.human,
     },
@@ -852,7 +851,7 @@ const sceneObjects = {
   ),
   model50: new GLTFModel(
     {
-      position: { x: -19, y: 14, z: -30 },
+      position: { x: -19, z: -30 },
       mass: 50,
       resourceURL: gltfModels.human,
     },
@@ -861,7 +860,7 @@ const sceneObjects = {
   ),
   model51: new GLTFModel(
     {
-      position: { x: -21, y: 14, z: -25 },
+      position: { x: -21, z: -25 },
       mass: 50,
       resourceURL: gltfModels.wideA,
     },
@@ -870,7 +869,7 @@ const sceneObjects = {
   ),
   model52: new GLTFModel(
     {
-      position: { x: -27, y: 14, z: -25 },
+      position: { x: -27, z: -25 },
       mass: 50,
       resourceURL: gltfModels.wideA,
     },
@@ -879,7 +878,7 @@ const sceneObjects = {
   ),
   model30a: new GLTFModel(
     {
-      position: { x: -10, y: 14, z:7 },
+      position: { x: -10, z:7 },
       mass: 50,
       resourceURL: gltfModels.building2,
     },
@@ -888,7 +887,7 @@ const sceneObjects = {
   ),
   model31a: new GLTFModel(
     {
-      position: { x: -25, y: 14, z:7 },
+      position: { x: -25, z:7 },
       mass: 50,
       resourceURL: gltfModels.building2,
     },
@@ -897,7 +896,7 @@ const sceneObjects = {
   ),
   model31aa: new GLTFModel(
     {
-      position: { x: -18, y: 14, z:7 },
+      position: { x: -18, z:7 },
       mass: 50,
       resourceURL: gltfModels.smallA,
     },
@@ -906,7 +905,7 @@ const sceneObjects = {
   ),
   model32a: new GLTFModel(
     {
-      position: { x: -35, y: 14, z:7 },
+      position: { x: -35, z:7 },
       mass: 50,
       resourceURL: gltfModels.smallA,
     },
@@ -915,7 +914,7 @@ const sceneObjects = {
   ),
   model33a: new GLTFModel(
     {
-      position: { x: -42, y: 14, z:7 },
+      position: { x: -42, z:7 },
       mass: 50,
       resourceURL: gltfModels.tower,
     },
@@ -924,7 +923,7 @@ const sceneObjects = {
   ),
   model34a: new GLTFModel(
     {
-      position: { x: -9, y: 14, z: 17 },
+      position: { x: -9, z: 17 },
       mass: 50,
       resourceURL: gltfModels.tower,
     },
@@ -933,7 +932,7 @@ const sceneObjects = {
   ),
   model35a: new GLTFModel(
     {
-      position: { x: -19, y: 14, z: 17 },
+      position: { x: -19, z: 17 },
       mass: 50,
       resourceURL: gltfModels.skyE,
     },
@@ -942,7 +941,7 @@ const sceneObjects = {
   ),
   model36a: new GLTFModel(
     {
-      position: { x: -43, y: 14, z: 20 },
+      position: { x: -43, z: 20 },
       mass: 50,
       resourceURL: gltfModels.hospital,
     },
@@ -951,7 +950,7 @@ const sceneObjects = {
   ),
   model37a: new GLTFModel(
     {
-      position: { x: -28, y: 14, z: 17 },
+      position: { x: -28, z: 17 },
       mass: 50,
       resourceURL: gltfModels.smallA,
     },
@@ -960,7 +959,7 @@ const sceneObjects = {
   ),
   model38a: new GLTFModel(
     {
-      position: { x: -9, y: 14, z: 27 },
+      position: { x: -9, z: 27 },
       mass: 50,
       resourceURL: gltfModels.building2,
     },
@@ -969,7 +968,7 @@ const sceneObjects = {
   ),
   model39a: new GLTFModel(
     {
-      position: { x: -40, y: 14, z: 40 },
+      position: { x: -40, z: 40 },
       mass: 50,
       resourceURL: gltfModels.skyE,
     },
@@ -978,7 +977,7 @@ const sceneObjects = {
   ),
   model40a: new GLTFModel(
     {
-      position: { x: -28, y: 14, z: 40 },
+      position: { x: -28, z: 40 },
       mass: 50,
       resourceURL: gltfModels.building4,
     },
@@ -987,7 +986,7 @@ const sceneObjects = {
   ),
   model41a: new GLTFModel(
     {
-      position: { x: -17, y: 14, z: 40 },
+      position: { x: -17, z: 40 },
       mass: 50,
       resourceURL: gltfModels.building2,
     },
@@ -996,7 +995,7 @@ const sceneObjects = {
   ),
   model42a: new GLTFModel(
     {
-      position: { x: -8, y: 14, z: 40 },
+      position: { x: -8, z: 40 },
       mass: 50,
       resourceURL: gltfModels.building2,
     },
@@ -1005,7 +1004,7 @@ const sceneObjects = {
   ),
   model43a: new GLTFModel(
     {
-      position: { x: -38, y: 14, z: 30 },
+      position: { x: -38, z: 30 },
       mass: 50,
       resourceURL: gltfModels.smallA,
     },
@@ -1014,7 +1013,7 @@ const sceneObjects = {
   ),
   model44a: new GLTFModel(
     {
-      position: { x: -45, y: 14, z: 30 },
+      position: { x: -45, z: 30 },
       mass: 50,
       resourceURL: gltfModels.smallA,
     },
@@ -1023,7 +1022,7 @@ const sceneObjects = {
   ),
   model45a: new GLTFModel(
     {
-      position: { x: -25, y: 14, z: 30 },
+      position: { x: -25, z: 30 },
       mass: 50,
       resourceURL: gltfModels.human,
     },
@@ -1032,7 +1031,7 @@ const sceneObjects = {
   ),
   model46a: new GLTFModel(
     {
-      position: { x: -27, y: 14, z: 30 },
+      position: { x: -27, z: 30 },
       mass: 50,
       resourceURL: gltfModels.human,
     },
@@ -1041,7 +1040,7 @@ const sceneObjects = {
   ),
   model47a: new GLTFModel(
     {
-      position: { x: -29, y: 14, z: 30 },
+      position: { x: -29, z: 30 },
       mass: 50,
       resourceURL: gltfModels.human,
     },
@@ -1050,7 +1049,7 @@ const sceneObjects = {
   ),
   model48a: new GLTFModel(
     {
-      position: { x: -23, y: 14, z: 30 },
+      position: { x: -23, z: 30 },
       mass: 50,
       resourceURL: gltfModels.human,
     },
@@ -1059,7 +1058,7 @@ const sceneObjects = {
   ),
   model49a: new GLTFModel(
     {
-      position: { x: -21, y: 14, z: 30 },
+      position: { x: -21, z: 30 },
       mass: 50,
       resourceURL: gltfModels.human,
     },
@@ -1068,7 +1067,7 @@ const sceneObjects = {
   ),
   model50a: new GLTFModel(
     {
-      position: { x: -19, y: 14, z: 30 },
+      position: { x: -19, z: 30 },
       mass: 50,
       resourceURL: gltfModels.human,
     },
@@ -1077,7 +1076,7 @@ const sceneObjects = {
   ),
   model51a: new GLTFModel(
     {
-      position: { x: -21, y: 14, z: 25 },
+      position: { x: -21, z: 25 },
       mass: 50,
       resourceURL: gltfModels.wideA,
     },
@@ -1086,7 +1085,7 @@ const sceneObjects = {
   ),
   model52a: new GLTFModel(
     {
-      position: { x: -27, y: 14, z: 25 },
+      position: { x: -27, z: 25 },
       mass: 50,
       resourceURL: gltfModels.wideA,
     },
@@ -1098,9 +1097,8 @@ const sceneObjects = {
 for (let i = -20; i < 23; i++) {
   sceneObjects[`road1${i}}`] = new GLTFModel(
     {
-      position: { x: 1.2, y: 9, z: i * 2.4 },
+      position: { x: 1.2, z: i * 2.4 },
       mass: 50,
-      type: 'road',
       resourceURL: gltfModels.road,
     },
     scene,
@@ -1108,9 +1106,8 @@ for (let i = -20; i < 23; i++) {
   );
   sceneObjects[`road2${i}}`] = new GLTFModel(
     {
-      position: { x: -1.2, y: 9, z: i * 2.4 },
+      position: { x: -1.2, z: i * 2.4 },
       mass: 50,
-      type: 'road',
       resourceURL: gltfModels.road,
     },
     scene,
@@ -1121,9 +1118,8 @@ for (let i = -20; i < 23; i++) {
 for (let i = 0; i < 20; i++) {
   sceneObjects[`road3${i}}`] = new GLTFModel(
     {
-      position: { x: 3.61 + 2.4 * i, y: 9, z: 0 },
+      position: { x: 3.61 + 2.4 * i, z: 0 },
       mass: 50,
-      type: 'road',
       resourceURL: gltfModels.road,
     },
     scene,
@@ -1131,9 +1127,8 @@ for (let i = 0; i < 20; i++) {
   );
   sceneObjects[`road4${i}}`] = new GLTFModel(
     {
-      position: { x: 3.61 + 2.4 * i, y: 9, z: 2.4 },
+      position: { x: 3.61 + 2.4 * i, z: 2.4 },
       mass: 50,
-      type: 'road',
       resourceURL: gltfModels.road,
     },
     scene,
@@ -1141,9 +1136,8 @@ for (let i = 0; i < 20; i++) {
   );
   sceneObjects[`road5${i}}`] = new GLTFModel(
     {
-      position: { x: -3.61 - 2.4 * i, y: 9, z: 0 },
+      position: { x: -3.61 - 2.4 * i, z: 0 },
       mass: 50,
-      type: 'road',
       resourceURL: gltfModels.road,
     },
     scene,
@@ -1151,9 +1145,8 @@ for (let i = 0; i < 20; i++) {
   );
   sceneObjects[`road6${i}}`] = new GLTFModel(
     {
-      position: { x: -3.61 - 2.4 * i, y: 9, z: 2.4 },
+      position: { x: -3.61 - 2.4 * i, z: 2.4 },
       mass: 50,
-      type: 'road',
       resourceURL: gltfModels.road,
     },
     scene,
