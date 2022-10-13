@@ -77,7 +77,8 @@ class GLTFModel {
     this.scene = scene;
     this.world = world;
     this.mass = props.mass ? props.mass : 0;
-    this.linearDamping = props.linearDamping;
+    this.linearDamping = props.linearDamping ? props.linearDamping : 0.3;
+    this.angularDamping = props.angularDamping ? props.angularDamping : 0;
     this.material = new CANNON.Material();
     this.isLoaded = false;
     this.colliders = props.colliders;
@@ -124,7 +125,7 @@ class GLTFModel {
       // subtract max and min vectors
       this.dimension = new THREE.Vector3().subVectors(box.max, box.min);
       if(this.dimension.y == 0) {
-        this.dimension.y = 0.5;
+        this.dimension.y = 3;
       }
 
       // cannon js rendering
@@ -133,6 +134,7 @@ class GLTFModel {
         position: new CANNON.Vec3(this.position.x, this.position.y, this.position.z),
         shape: new CANNON.Box(new CANNON.Vec3(this.dimension.x / 2, this.dimension.y / 2, this.dimension.z / 2)),
         linearDamping: this.linearDamping,
+        angularDamping: this.angularDamping,
         material: this.material
       });
       // if(this.colliders) {

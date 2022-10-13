@@ -32,7 +32,9 @@ import {
 // import { sceneObjects, lighting, camera, scene, world, cannonDebugger } from './src/scenes/isometric';
 
 let camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 1, 20000 );
-camera.position.set( 30, 30, 100 );
+// camera.position.set( 30, 30, 100 );
+camera.position.set( 0, 400, 0 );
+
 const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 const statsDOM = document.getElementById('stats');
 let controls, stats;
