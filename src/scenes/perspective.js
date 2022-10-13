@@ -379,7 +379,436 @@ const sceneObjects = {
 
 
 
-  
+
+
+
+
+
+
+
+  model30: new GLTFModel(
+    {
+      position: { x: -10, y: 20, z: -7 },
+      mass: 50,
+      resourceURL: gltfModels.building4,
+    },
+    scene,
+    world
+  ),
+  model31: new GLTFModel(
+    {
+      position: { x: -25, y: 20, z: -7 },
+      mass: 50,
+      resourceURL: gltfModels.building4,
+    },
+    scene,
+    world
+  ),
+  model32: new GLTFModel(
+    {
+      position: { x: -35, y: 20, z: -7 },
+      mass: 50,
+      resourceURL: gltfModels.smallA,
+    },
+    scene,
+    world
+  ),
+  model33: new GLTFModel(
+    {
+      position: { x: -42, y: 20, z: -7 },
+      mass: 50,
+      resourceURL: gltfModels.tower,
+    },
+    scene,
+    world
+  ),
+  model34: new GLTFModel(
+    {
+      position: { x: -9, y: 20, z: -17 },
+      mass: 50,
+      resourceURL: gltfModels.tower,
+    },
+    scene,
+    world
+  ),
+  model35: new GLTFModel(
+    {
+      position: { x: -19, y: 20, z: -17 },
+      mass: 50,
+      resourceURL: gltfModels.skyE,
+    },
+    scene,
+    world
+  ),
+  model36: new GLTFModel(
+    {
+      position: { x: -43, y: 20, z: -20 },
+      mass: 50,
+      resourceURL: gltfModels.hospital,
+    },
+    scene,
+    world
+  ),
+  model37: new GLTFModel(
+    {
+      position: { x: -28, y: 20, z: -17 },
+      mass: 50,
+      resourceURL: gltfModels.smallA,
+    },
+    scene,
+    world
+  ),
+  model38: new GLTFModel(
+    {
+      position: { x: -9, y: 20, z: -27 },
+      mass: 50,
+      resourceURL: gltfModels.building2,
+    },
+    scene,
+    world
+  ),
+  model39: new GLTFModel(
+    {
+      position: { x: -40, y: 20, z: -40 },
+      mass: 50,
+      resourceURL: gltfModels.skyE,
+    },
+    scene,
+    world
+  ),
+  model40: new GLTFModel(
+    {
+      position: { x: -28, y: 20, z: -40 },
+      mass: 50,
+      resourceURL: gltfModels.building4,
+    },
+    scene,
+    world
+  ),
+  model41: new GLTFModel(
+    {
+      position: { x: -17, y: 20, z: -40 },
+      mass: 50,
+      resourceURL: gltfModels.building2,
+    },
+    scene,
+    world
+  ),
+  model42: new GLTFModel(
+    {
+      position: { x: -8, y: 20, z: -40 },
+      mass: 50,
+      resourceURL: gltfModels.building2,
+    },
+    scene,
+    world
+  ),
+  model43: new GLTFModel(
+    {
+      position: { x: -38, y: 20, z: -30 },
+      mass: 50,
+      resourceURL: gltfModels.smallA,
+    },
+    scene,
+    world
+  ),
+  model44: new GLTFModel(
+    {
+      position: { x: -45, y: 20, z: -30 },
+      mass: 50,
+      resourceURL: gltfModels.smallA,
+    },
+    scene,
+    world
+  ),
+  model45: new GLTFModel(
+    {
+      position: { x: -25, y: 20, z: -30 },
+      mass: 50,
+      resourceURL: gltfModels.human,
+    },
+    scene,
+    world
+  ),
+  model46: new GLTFModel(
+    {
+      position: { x: -27, y: 20, z: -30 },
+      mass: 50,
+      resourceURL: gltfModels.human,
+    },
+    scene,
+    world
+  ),
+  model47: new GLTFModel(
+    {
+      position: { x: -29, y: 20, z: -30 },
+      mass: 50,
+      resourceURL: gltfModels.human,
+    },
+    scene,
+    world
+  ),
+  model48: new GLTFModel(
+    {
+      position: { x: -23, y: 20, z: -30 },
+      mass: 50,
+      resourceURL: gltfModels.human,
+    },
+    scene,
+    world
+  ),
+  model49: new GLTFModel(
+    {
+      position: { x: -21, y: 20, z: -30 },
+      mass: 50,
+      resourceURL: gltfModels.human,
+    },
+    scene,
+    world
+  ),
+  model50: new GLTFModel(
+    {
+      position: { x: -19, y: 20, z: -30 },
+      mass: 50,
+      resourceURL: gltfModels.human,
+    },
+    scene,
+    world
+  ),
+  model51: new GLTFModel(
+    {
+      position: { x: -21, y: 20, z: -25 },
+      mass: 50,
+      resourceURL: gltfModels.wideA,
+    },
+    scene,
+    world
+  ),
+  model52: new GLTFModel(
+    {
+      position: { x: -27, y: 20, z: -25 },
+      mass: 50,
+      resourceURL: gltfModels.wideA,
+    },
+    scene,
+    world
+  ),
+  model30a: new GLTFModel(
+    {
+      position: { x: -10, y: 20, z:7 },
+      mass: 50,
+      resourceURL: gltfModels.building2,
+    },
+    scene,
+    world
+  ),
+  model31a: new GLTFModel(
+    {
+      position: { x: -25, y: 20, z:7 },
+      mass: 50,
+      resourceURL: gltfModels.building2,
+    },
+    scene,
+    world
+  ),
+  model31aa: new GLTFModel(
+    {
+      position: { x: -18, y: 20, z:7 },
+      mass: 50,
+      resourceURL: gltfModels.smallA,
+    },
+    scene,
+    world
+  ),
+  model32a: new GLTFModel(
+    {
+      position: { x: -35, y: 20, z:7 },
+      mass: 50,
+      resourceURL: gltfModels.smallA,
+    },
+    scene,
+    world
+  ),
+  model33a: new GLTFModel(
+    {
+      position: { x: -42, y: 20, z:7 },
+      mass: 50,
+      resourceURL: gltfModels.tower,
+    },
+    scene,
+    world
+  ),
+  model34a: new GLTFModel(
+    {
+      position: { x: -9, y: 20, z: 17 },
+      mass: 50,
+      resourceURL: gltfModels.tower,
+    },
+    scene,
+    world
+  ),
+  model35a: new GLTFModel(
+    {
+      position: { x: -19, y: 20, z: 17 },
+      mass: 50,
+      resourceURL: gltfModels.skyE,
+    },
+    scene,
+    world
+  ),
+  model36a: new GLTFModel(
+    {
+      position: { x: -43, y: 20, z: 20 },
+      mass: 50,
+      resourceURL: gltfModels.hospital,
+    },
+    scene,
+    world
+  ),
+  model37a: new GLTFModel(
+    {
+      position: { x: -28, y: 20, z: 17 },
+      mass: 50,
+      resourceURL: gltfModels.smallA,
+    },
+    scene,
+    world
+  ),
+  model38a: new GLTFModel(
+    {
+      position: { x: -9, y: 20, z: 27 },
+      mass: 50,
+      resourceURL: gltfModels.building2,
+    },
+    scene,
+    world
+  ),
+  model39a: new GLTFModel(
+    {
+      position: { x: -40, y: 20, z: 40 },
+      mass: 50,
+      resourceURL: gltfModels.skyE,
+    },
+    scene,
+    world
+  ),
+  model40a: new GLTFModel(
+    {
+      position: { x: -28, y: 20, z: 40 },
+      mass: 50,
+      resourceURL: gltfModels.building4,
+    },
+    scene,
+    world
+  ),
+  model41a: new GLTFModel(
+    {
+      position: { x: -17, y: 20, z: 40 },
+      mass: 50,
+      resourceURL: gltfModels.building2,
+    },
+    scene,
+    world
+  ),
+  model42a: new GLTFModel(
+    {
+      position: { x: -8, y: 20, z: 40 },
+      mass: 50,
+      resourceURL: gltfModels.building2,
+    },
+    scene,
+    world
+  ),
+  model43a: new GLTFModel(
+    {
+      position: { x: -38, y: 20, z: 30 },
+      mass: 50,
+      resourceURL: gltfModels.smallA,
+    },
+    scene,
+    world
+  ),
+  model44a: new GLTFModel(
+    {
+      position: { x: -45, y: 20, z: 30 },
+      mass: 50,
+      resourceURL: gltfModels.smallA,
+    },
+    scene,
+    world
+  ),
+  model45a: new GLTFModel(
+    {
+      position: { x: -25, y: 20, z: 30 },
+      mass: 50,
+      resourceURL: gltfModels.human,
+    },
+    scene,
+    world
+  ),
+  model46a: new GLTFModel(
+    {
+      position: { x: -27, y: 20, z: 30 },
+      mass: 50,
+      resourceURL: gltfModels.human,
+    },
+    scene,
+    world
+  ),
+  model47a: new GLTFModel(
+    {
+      position: { x: -29, y: 20, z: 30 },
+      mass: 50,
+      resourceURL: gltfModels.human,
+    },
+    scene,
+    world
+  ),
+  model48a: new GLTFModel(
+    {
+      position: { x: -23, y: 20, z: 30 },
+      mass: 50,
+      resourceURL: gltfModels.human,
+    },
+    scene,
+    world
+  ),
+  model49a: new GLTFModel(
+    {
+      position: { x: -21, y: 20, z: 30 },
+      mass: 50,
+      resourceURL: gltfModels.human,
+    },
+    scene,
+    world
+  ),
+  model50a: new GLTFModel(
+    {
+      position: { x: -19, y: 20, z: 30 },
+      mass: 50,
+      resourceURL: gltfModels.human,
+    },
+    scene,
+    world
+  ),
+  model51a: new GLTFModel(
+    {
+      position: { x: -21, y: 20, z: 25 },
+      mass: 50,
+      resourceURL: gltfModels.wideA,
+    },
+    scene,
+    world
+  ),
+  model52a: new GLTFModel(
+    {
+      position: { x: -27, y: 20, z: 25 },
+      mass: 50,
+      resourceURL: gltfModels.wideA,
+    },
+    scene,
+    world
+  ),
 };
 
 for (let i = -20; i < 23; i++) {
