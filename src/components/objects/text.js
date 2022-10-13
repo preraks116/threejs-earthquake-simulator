@@ -57,3 +57,34 @@ class Text {
 }
 
 export { Text };
+
+
+// text: new Text(
+//   {
+//     width: 10.2,
+//     height: 8.5,
+//     padding: 1.5,
+//     justifyContent: "center",
+//     textAlign: "left",
+//     fontFamily: FontJSON,
+//     fontTexture: FontImage,
+//     position: { x: 25, y: 25, z: 80.8 },
+//     rotation: { x: 0, y: 0.3, z: 0 },
+//     text: [
+//       {
+//         content: "This library supports line-break-friendly-characters,",
+//         fontSize: 0.555,
+//       },
+//       {
+//         content:
+//           "As well as multi-font-size lines with consistent vertical spacing.",
+//         fontSize: 0.58,
+//       },
+//       {
+//         content: "This library supports line-break-friendly-characters,",
+//         fontSize: 0.56,
+//       },
+//     ],
+//   },
+//   scene
+// ),

@@ -37,12 +37,13 @@ const cannonDebugger = new CannonDebugger(scene, world, {
 
 // dictionary of all objects
 const sceneObjects = {
+  /////////////////////// ISLAND
   cube6: new Box(
     {
       // position: { x: 5, y: 0, z: -1.75 },
       position: { x: 1, y: 8, z: 3 },
       color: 0xffffff,
-      dimension: { x: 200, y: 5, z: 200 },
+      dimension: { x: 100, y: 5, z: 100 },
       speed: 1000,
       mass: 0,
       linearDamping: 0.3,
@@ -55,174 +56,29 @@ const sceneObjects = {
     scene,
     world
   ),
-  //   model: new GLTFModel({
-  //     position: { x: 0, y: 10, z: 0 },
-  //     linearDamping: 0.3,
-  //     mass: 50,
-  //     resourceURL: gltfModels.human,
-  //   }, scene, world),
-  //   model2: new GLTFModel({
-  //     position: { x: 10, y: 20, z: 10 },
-  //     mass: 50,
-  //     resourceURL: gltfModels.skyE,
-  // }, scene, world),
-  // road1: new GLTFModel(
-  //   {
-  //     position: { x: 3.61, y: 3, z: 0 },
-  //     mass: 50,
-  //     resourceURL: gltfModels.road,
-  //   },
-  //   scene,
-  //   world
-  // ),
-  // road2: new GLTFModel(
-  //   {
-  //     position: { x: 3.61, y: 3, z: 2.4 },
-  //     mass: 50,
-  //     resourceURL: gltfModels.road,
-  //   },
-  //   scene,
-  //   world
-  // ),
-  // road3: new GLTFModel(
-  //   {
-  //     position: { x: 3.61+2.4, y: 3, z: 0 },
-  //     mass: 50,
-  //     resourceURL: gltfModels.road,
-  //   },
-  //   scene,
-  //   world
-  // ),
-  // road4: new GLTFModel(
-  //   {
-  //     position: { x: 3.61+2.4, y: 3, z: 2.4 },
-  //     mass: 50,
-  //     resourceURL: gltfModels.road,
-  //   },
-  //   scene,
-  //   world
-  // ),
-  // road2: new GLTFModel(
-  //   {
-  //     position: { x: -1.2, y: 3, z: 0 },
-  //     mass: 50,
-  //     resourceURL: gltfModels.road,
-  //   },
-  //   scene,
-  //   world
-  // ),
-  // road3: new GLTFModel(
-  //   {
-  //     position: { x: 1.2, y: 3, z: 2.4 },
-  //     mass: 50,
-  //     resourceURL: gltfModels.road,
-  //   },
-  //   scene,
-  //   world
-  // ),
-  // road4: new GLTFModel(
-  //   {
-  //     position: { x: -1.2, y: 3, z: 2.4 },
-  //     mass: 50,
-  //     resourceURL: gltfModels.road,
-  //   },
-  //   scene,
-  //   world
-  // ),
-  // road5: new GLTFModel(
-  //   {
-  //     position: { x: 1.2, y: 3, z: 4.8 },
-  //     mass: 50,
-  //     resourceURL: gltfModels.road,
-  //   },
-  //   scene,
-  //   world
-  // ),
-  // road6: new GLTFModel(
-  //   {
-  //     position: { x: -1.2, y: 3, z: 4.8 },
-  //     mass: 50,
-  //     resourceURL: gltfModels.road,
-  //   },
-  //   scene,
-  //   world
-  // ),
-
-  // text: new Text({
-  //     width: 10.2,
-  //     height: 8.5,
-  //     padding: 1.5,
-  //     justifyContent: 'center',
-  //     textAlign: 'left',
-  //     fontFamily: FontJSON,
-  //     fontTexture: FontImage,
-  //     position: { x: 25, y: 25, z: 80.8 },
-  //     rotation: { x: 0, y: 0.3, z: 0 },
-  //     text: [
-  //       {
-  //         content: 'This library supports line-break-friendly-characters,',
-  //         fontSize: 0.555
-  //       },
-  //       {
-  //         content: 'As well as multi-font-size lines with consistent vertical spacing.',
-  //         fontSize: 0.58
-  //       },
-  //       {
-  //         content: 'This library supports line-break-friendly-characters,',
-  //         fontSize: 0.56
-  //       }
-  //     ]
-  // }, scene)
-
-  // plane : new Island(
-  // {
-  //     points: [
-  //     { x: 610, y: 320 },
-  //     { x: 450, y: 300 },
-  //     { x: 392, y: 392 },
-  //     { x: 266, y: 438 },
-  //     { x: 190, y: 570 },
-  //     { x: 190, y: 600 },
-  //     { x: 160, y: 620 },
-  //     { x: 160, y: 650 },
-  //     { x: 180, y: 640 },
-  //     { x: 165, y: 680 },
-  //     { x: 150, y: 670 },
-  //     { x: 90, y: 737 },
-  //     { x: 80, y: 795 },
-  //     { x: 50, y: 835 },
-  //     { x: 64, y: 870 },
-  //     { x: 60, y: 945 },
-  //     { x: 300, y: 945 },
-  //     { x: 300, y: 743 },
-  //     { x: 600, y: 473 },
-  //     { x: 626, y: 425 },
-  //     { x: 600, y: 370 },
-  //     { x: 610, y: 320 },
-  //     ],
-  //     scale: 0.125,
-  //     extrudeSettings: {
-  //         depth: 10,
-  //         bevelEnabled: true,
-  //         bevelSegments: 2,
-  //         steps: 2,
-  //         bevelSize: 1,
-  //         bevelThickness: 1,
-  //     },
-  //     color: 0xf08000,
-  //     textures: textures.brick,
-  //     position: { x: -30, y: 1.5, z: -90 },
-  //     dimension: { x: 50, y: 50 },
-  //     rotation: { x: Math.PI / 2, y: 0, z: 0 },
-  //     linearDamping: 0.3,
-  //     // amplitude: 0.4,
-  //     factor: 7.5,
-  //     amplitude: 0,
-  //     timePeriod: 100
-  // }, scene, world)
+  ////////////////////////
+  human1: new GLTFModel(
+    {
+      position: { x: -30, y: 10, z: 30 },
+      linearDamping: 0.3,
+      mass: 50,
+      resourceURL: gltfModels.human,
+    },
+    scene,
+    world
+  ),
+  model2: new GLTFModel(
+    {
+      position: { x: 10, y: 20, z: 10 },
+      mass: 50,
+      resourceURL: gltfModels.skyE,
+    },
+    scene,
+    world
+  ),
 };
 
-for (let i = -40; i < 43; i++) {
+for (let i = -20; i < 23; i++) {
   sceneObjects[`road1${i}}`] = new GLTFModel(
     {
       position: { x: 1.2, y: 9, z: i * 2.4 },
@@ -243,7 +99,7 @@ for (let i = -40; i < 43; i++) {
   );
 }
 
-for (let i = 0; i < 40; i++) {
+for (let i = 0; i < 20; i++) {
   sceneObjects[`road3${i}}`] = new GLTFModel(
     {
       position: { x: 3.61 + 2.4 * i, y: 9, z: 0 },
