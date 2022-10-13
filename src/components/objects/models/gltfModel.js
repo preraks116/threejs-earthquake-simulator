@@ -8,12 +8,43 @@ const gltfLoader = new GLTFLoader();
 
 // dimension in model is Vec3
 
+function addColliders(colliders, body) {
+  for (let key in colliders) {
+      let collider = colliders[key];
+      console.log(collider);
+      if(collider.type === 'box') {
+          let shape = new CANNON.Box(new CANNON.Vec3(
+              collider.dimension.x / 2, 
+              collider.dimension.y / 2, 
+              collider.dimension.z / 2
+          ));
+          // position defined in ORC
+          let offset = new CANNON.Vec3(collider.position.x, collider.position.y, collider.position.z);
+          let orientation = new CANNON.Quaternion(0, 0, 0, 1);
+          collider.rotation = collider.rotation ? collider.rotation : { x: 0, y: 0, z: 0 };
+          orientation.setFromEuler(collider.rotation.x, collider.rotation.y, collider.rotation.z);
+          body.addShape(shape, offset, orientation);
+      }
+      else if(collider.type === 'cylinder') {
+          let shape = new CANNON.Cylinder(
+              collider.dimension.radius, 
+              collider.dimension.radius, 
+              collider.dimension.height, 
+              collider.dimension.spokes
+          );
+          let offset = new CANNON.Vec3(collider.position.x, collider.position.y, collider.position.z);
+          body.addShape(shape, offset);
+      }
+  }
+}
+
+
 function enableShadows(object) {
   for (let i = 0; i < object.children.length; i++) {
     let child = object.children[i];
     
     if (child.isMesh) {
-      console.log(child);
+      // console.log(child);
       child.material.metalness = 0;
       child.castShadow = true;
       child.receiveShadow = true;
@@ -49,6 +80,7 @@ class GLTFModel {
     this.linearDamping = props.linearDamping;
     this.material = new CANNON.Material();
     this.isLoaded = false;
+    this.colliders = props.colliders;
     this.resourceURL = props.resourceURL;
   }
   render() {
@@ -59,7 +91,7 @@ class GLTFModel {
       this.isLoaded = true;
       // the loaded model
       this.model = gltf.scene;
-      console.log(this.model);
+      // console.log(this.model);
       // set the position and scale
       this.model.position.set(this.position.x, this.position.y, this.position.z);
       this.model.scale.set(this.resourceURL.scale, this.resourceURL.scale, this.resourceURL.scale);
@@ -76,6 +108,7 @@ class GLTFModel {
       // });
 
       enableShadows(this.model);
+      console.log(this.model);
       // console.log(this.model);
       // addShapes(this.model, this.body);
       // const result = threeToCannon(this.model, {type: ShapeType.HULL});
@@ -87,6 +120,7 @@ class GLTFModel {
 
       // preprocessing to get the model's bounding box
       const box = new THREE.Box3().setFromObject(this.model);
+      console.log(box);
       // subtract max and min vectors
       this.dimension = new THREE.Vector3().subVectors(box.max, box.min);
 
@@ -98,13 +132,20 @@ class GLTFModel {
         linearDamping: this.linearDamping,
         material: this.material
       });
-      this.body.position.set(this.position.x, this.position.y + 5, this.position.z);
+      // if(this.colliders) {
+      //   addColliders(this.colliders, this.body);
+      // }
+
+      this.body.position.set(this.position.x, this.position.y, this.position.z);
       this.body.quaternion.setFromEuler(this.rotation.x, this.rotation.y, this.rotation.z);
       this.world.addBody(this.body);
     });
   }
   update() {
     if (this.isLoaded) {
+      // console.log(this.body);
+      console.log(this.model.up);
+      // this.model.position.copy(this.body.position.vsub(new CANNON.Vec3(0, this.dimension.y / 2, 0)));
       this.model.position.copy(this.body.position);
       this.model.quaternion.copy(this.body.quaternion);
     }

@@ -22,7 +22,7 @@ import { fbxModels, gltfModels } from '../utils/models';
 const scene = new THREE.Scene();
 
 const world = new CANNON.World();
-world.gravity.set(0, -9.82, 0);
+world.gravity.set(0, -29.82, 0);
 world.broadphase = new CANNON.NaiveBroadphase();
 
 const cannonDebugger = new CannonDebugger(scene, world, {
@@ -113,37 +113,30 @@ const sceneObjects = {
     }, scene, world),
     model: new GLTFModel({
         scene: scene,
-        position: { x: 0, y: 5, z: 0 },
+        position: { x: 0, y: 20, z: 0 },
         // scale: { x: 0.1, y: 0.1, z: 0.1 },
         linearDamping: 0.3,
-        mass: 5,
-        resourceURL: gltfModels.building,
+        mass: 5000,
+        resourceURL: gltfModels.building2,
+        colliders: {
+          collider1: {
+            type: "box",
+            position: { x: 0, y: 5, z: 0 },
+            dimension: { x: 5, y: 10, z: 5 },
+          },   
+        }
     }, scene, world),
 
     text: new Text({
         width: 10.2,
-        height: 5.5,
-        padding: 0.5,
+        height: 8.5,
+        padding: 1.5,
         justifyContent: 'center',
         textAlign: 'left',
         fontFamily: FontJSON,
         fontTexture: FontImage,
-        position: { x: 25, y: 20, z: 80.8 },
+        position: { x: 25, y: 25, z: 80.8 },
         rotation: { x: -0.55, y: 0, z: 0 },
-        // text: {
-        //   first: {
-        //     content: 'This library supports line-break-friendly-characters,',
-        //     fontSize: 0.055
-        //   },
-        //   second: {
-        //     content: 'As well as multi-font-size lines with consistent vertical spacing.',
-        //     fontSize: 0.08
-        //   },
-        //   third: {
-        //     content: 'This library supports line-break-friendly-characters,',
-        //     fontSize: 0.06
-        //   }
-        // }
         text: [
           {
             content: 'This library supports line-break-friendly-characters,',

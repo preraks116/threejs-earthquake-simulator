@@ -21,6 +21,10 @@ const gltfModels = {
     building: {
         file: 'building/large_buildingB.glb',
         scale: 6
+    },
+    building2: {
+        file: 'building/untitled.glb',
+        scale: 6
     }
 }
 

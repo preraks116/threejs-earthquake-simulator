@@ -34,6 +34,7 @@ import {
 let camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 1, 20000 );
 camera.position.set( 30, 30, 100 );
 const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+const statsDOM = document.getElementById('stats');
 let controls, stats;
 let intersects = [];
 const player = sceneObjects["player"];
@@ -461,7 +462,13 @@ function animate() {
   if (player) {
     camera.update(player.body);
   }
-  world.step(1 / 30);
+  world.step(1 / 60);
+  statsDOM.innerHTML = `
+    <div>
+      <p>Draw Calls: ${renderer.info.render.calls}</p>
+      <p>Triangles: ${(renderer.info.render.triangles)}</p>
+    </div>
+  `;
 
   for (let key in sceneObjects) {
     sceneObjects[key].update();
