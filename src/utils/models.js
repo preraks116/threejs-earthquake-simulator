@@ -40,7 +40,7 @@ const gltfModels = {
     },
     tower: {
         file: 'building/tower.glb',
-        scale: 6
+        scale: 12
     },
     skyE: {
         file: 'building/skyE.glb',
