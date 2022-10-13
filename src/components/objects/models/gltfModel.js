@@ -46,11 +46,31 @@ function enableShadows(object) {
     if (child.isMesh) {
       // console.log(child);
       child.material.metalness = 0;
+      // child.material.color = new THREE.Color(0xff0000);
+      // console.log(child);
       child.castShadow = true;
       child.receiveShadow = true;
     }
     else {
       enableShadows(child);
+    }
+  }
+}
+
+function changeColor(object, color) {
+  for (let i = 0; i < object.children.length; i++) {
+    let child = object.children[i];
+    
+    if (child.isMesh) {
+      // console.log(child);
+      // child.material.metalness = 0;
+      child.material.color = new THREE.Color(color);
+      // console.log(child);
+      // child.castShadow = true;
+      // child.receiveShadow = true;
+    }
+    else {
+      changeColor(child, color);
     }
   }
 }
@@ -82,7 +102,14 @@ class GLTFModel {
     this.material = new CANNON.Material();
     this.isLoaded = false;
     this.colliders = props.colliders;
+    this.type = props.type ? props.type : 'building';
     this.resourceURL = props.resourceURL;
+    
+    this.fallVal = this.resourceURL.fallVal ? this.resourceURL.fallVal : 0;
+    this.isFallen = 0;
+    this.isDead = 0;
+
+    
   }
   render() {
     // wait for the gltfLoader to load the model
@@ -121,11 +148,11 @@ class GLTFModel {
 
       // preprocessing to get the model's bounding box
       const box = new THREE.Box3().setFromObject(this.model);
-      console.log(box);
+      // console.log(box);
       // subtract max and min vectors
       this.dimension = new THREE.Vector3().subVectors(box.max, box.min);
       if(this.dimension.y == 0) {
-        this.dimension.y = 3;
+        this.dimension.y = 1;
       }
 
       // cannon js rendering
@@ -140,6 +167,48 @@ class GLTFModel {
       // if(this.colliders) {
       //   addColliders(this.colliders, this.body);
       // }
+      this.maxval = 0;
+      this.body.addEventListener('collide', (e) => {
+        var relativeVelocity = e.contact.getImpactVelocityAlongNormal();
+        
+        
+        if(this.type === 'human' && !this.isDead) {
+          // console.log(e);
+          if(Math.abs(relativeVelocity) > this.resourceURL.killVal){
+            // More energy
+            // console.log("fallen")
+            changeColor(this.model, 0xff0000);
+            this.isFallen = 1;
+            this.isDead = 1;
+            // console.log(this.model);
+          }
+          else if(Math.abs(relativeVelocity) > this.fallVal){
+            // More energy
+            // console.log("fallen")
+            if(this.type === 'human') {
+              changeColor(this.model, 0xffff00);
+            }
+            this.isFallen = 1;
+            // console.log(this.model);
+          }
+        }
+        else if(this.type === 'building' && !this.isFallen) {
+          // if(Math.abs(relativeVelocity) > this.maxval){
+          //   this.maxval = Math.abs(relativeVelocity);
+          //   console.log(this.maxval);
+          // }
+          // console.log(Math.abs(relativeVelocity));
+
+          if(Math.abs(relativeVelocity) > this.resourceURL.fallVal){
+            // More energy
+            console.log("fallen building")
+            // changeColor(this.model, 0xff0000);
+            this.isFallen = 1;
+            // console.log(this.model);
+          }          
+          // console.log(Math.abs(relativeVelocity))
+        }
+      });
 
       this.body.position.set(this.position.x, this.position.y, this.position.z);
       this.body.quaternion.setFromEuler(this.rotation.x, this.rotation.y, this.rotation.z);

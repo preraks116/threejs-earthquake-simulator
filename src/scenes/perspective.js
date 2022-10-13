@@ -59,9 +59,10 @@ const sceneObjects = {
   ////////////////////////
   human1: new GLTFModel(
     {
-      position: { x: -30, y: 10, z: 30 },
+      position: { x: -30, y: 3.5, z: 30 },
       linearDamping: 0.3,
       mass: 50,
+      type: "human",
       resourceURL: gltfModels.human,
     },
     scene,
@@ -103,7 +104,7 @@ const sceneObjects = {
 
   model2: new GLTFModel(
     {
-      position: { x: 10, y: 20, z: 10 },
+      position: { x: 10, y: 12, z: 10 },
       mass: 50,
       resourceURL: gltfModels.skyE,
     },
@@ -112,7 +113,7 @@ const sceneObjects = {
   ),
   model3: new GLTFModel(
     {
-      position: { x: 20, y: 20, z: 10 },
+      position: { x: 20, y: 7.5, z: 10 },
       mass: 50,
       resourceURL: gltfModels.building2,
     },
@@ -387,6 +388,7 @@ for (let i = -20; i < 23; i++) {
     {
       position: { x: 1.2, y: 9, z: i * 2.4 },
       mass: 50,
+      type: 'road',
       resourceURL: gltfModels.road,
     },
     scene,
@@ -396,6 +398,7 @@ for (let i = -20; i < 23; i++) {
     {
       position: { x: -1.2, y: 9, z: i * 2.4 },
       mass: 50,
+      type: 'road',
       resourceURL: gltfModels.road,
     },
     scene,
@@ -408,6 +411,7 @@ for (let i = 0; i < 20; i++) {
     {
       position: { x: 3.61 + 2.4 * i, y: 9, z: 0 },
       mass: 50,
+      type: 'road',
       resourceURL: gltfModels.road,
     },
     scene,
@@ -417,6 +421,7 @@ for (let i = 0; i < 20; i++) {
     {
       position: { x: 3.61 + 2.4 * i, y: 9, z: 2.4 },
       mass: 50,
+      type: 'road',
       resourceURL: gltfModels.road,
     },
     scene,
@@ -426,6 +431,7 @@ for (let i = 0; i < 20; i++) {
     {
       position: { x: -3.61 - 2.4 * i, y: 9, z: 0 },
       mass: 50,
+      type: 'road',
       resourceURL: gltfModels.road,
     },
     scene,
@@ -435,6 +441,7 @@ for (let i = 0; i < 20; i++) {
     {
       position: { x: -3.61 - 2.4 * i, y: 9, z: 2.4 },
       mass: 50,
+      type: 'road',
       resourceURL: gltfModels.road,
     },
     scene,
