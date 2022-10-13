@@ -155,6 +155,15 @@ const sceneObjects = {
     scene,
     world
   ),
+  // model7h1: new GLTFModel(
+  //   {
+  //     position: { x: 20, y: 20, z: 20 },
+  //     mass: 50,
+  //     resourceURL: gltfModels.human,
+  //   },
+  //   scene,
+  //   world
+  // ),
   model8: new GLTFModel(
     {
       position: { x: 40, y: 20, z: 20 },
@@ -184,18 +193,54 @@ const sceneObjects = {
   ),
   model12: new GLTFModel(
     {
-      position: { x: 40, y: 20, z: 30 },
+      position: { x: 40, y: 8, z: 30 },
       mass: 50,
       resourceURL: gltfModels.building2,
     },
     scene,
     world
   ),
+  model12h1: new GLTFModel(
+    {
+      position: { x: 39, y: 16, z: 30 },
+      mass: 1,
+      resourceURL: gltfModels.human,
+    },
+    scene,
+    world
+  ),
+  model12h2: new GLTFModel(
+    {
+      position: { x: 41, y: 16, z: 30 },
+      mass: 1,
+      resourceURL: gltfModels.human,
+    },
+    scene,
+    world
+  ),
   model13: new GLTFModel(
     {
-      position: { x: 40, y: 20, z: 40 },
+      position: { x: 40, y: 8, z: 40 },
       mass: 50,
       resourceURL: gltfModels.building2,
+    },
+    scene,
+    world
+  ),
+  model13h1: new GLTFModel(
+    {
+      position: { x: 39, y: 16, z: 40 },
+      mass: 1,
+      resourceURL: gltfModels.human,
+    },
+    scene,
+    world
+  ),
+  model13h2: new GLTFModel(
+    {
+      position: { x: 41, y: 16, z: 40 },
+      mass: 1,
+      resourceURL: gltfModels.human,
     },
     scene,
     world
@@ -323,18 +368,54 @@ const sceneObjects = {
   ),
   model12_1: new GLTFModel(
     {
-      position: { x: 40, y: 20, z: -30 },
+      position: { x: 40, y: 8, z: -30 },
       mass: 50,
       resourceURL: gltfModels.building2,
     },
     scene,
     world
   ),
+  model12_1h1: new GLTFModel(
+    {
+      position: { x: 39, y: 16, z: -30 },
+      mass: 1,
+      resourceURL: gltfModels.human,
+    },
+    scene,
+    world
+  ),
+  model12_1h2: new GLTFModel(
+    {
+      position: { x: 41, y: 16, z: -30 },
+      mass: 1,
+      resourceURL: gltfModels.human,
+    },
+    scene,
+    world
+  ),
   model13_1: new GLTFModel(
     {
-      position: { x: 40, y: 20, z: -40 },
+      position: { x: 40, y: 8, z: -40 },
       mass: 50,
       resourceURL: gltfModels.building2,
+    },
+    scene,
+    world
+  ),
+  model13_1h1: new GLTFModel(
+    {
+      position: { x: 39, y: 16, z: -40 },
+      mass: 1,
+      resourceURL: gltfModels.human,
+    },
+    scene,
+    world
+  ),
+  model13_1h2: new GLTFModel(
+    {
+      position: { x: 41, y: 16, z: -40 },
+      mass: 1,
+      resourceURL: gltfModels.human,
     },
     scene,
     world
