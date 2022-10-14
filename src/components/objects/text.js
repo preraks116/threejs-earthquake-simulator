@@ -20,7 +20,7 @@ class Text {
       height: this.height,
       padding: this.padding,
       justifyContent: this.justifyContent,
-      textAlign: this.textAlign,
+      // textAlign: this.textAlign,
       fontFamily: this.fontFamily,
       fontTexture: this.fontTexture,
     });
@@ -47,6 +47,7 @@ class Text {
         new ThreeMeshUI.Text({
           content: text.content,
           fontSize: text.fontSize,
+          justifyContent: "center",
         })
       );
     }

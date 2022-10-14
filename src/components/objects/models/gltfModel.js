@@ -96,7 +96,7 @@ class GLTFModel {
     this.rotation = props.rotation ? props.rotation : { x: 0, y: 0, z: 0 };
     this.scene = scene;
     this.world = world;
-    this.mass = props.mass ? props.mass : 0;
+    // this.mass = props.mass ? props.mass : 0;
     this.linearDamping = props.linearDamping ? props.linearDamping : 0.3;
     this.angularDamping = props.angularDamping ? props.angularDamping : 0;
     this.material = new CANNON.Material();
@@ -108,6 +108,8 @@ class GLTFModel {
     this.position.y = props.position.y ? props.position.y : this.resourceURL.Y;
     this.type = this.resourceURL.type;
     this.cost = this.resourceURL.cost;
+    this.mass = this.resourceURL.mass;
+    this.population = this.mass*10
     
     this.fallVal = this.resourceURL.fallVal ? this.resourceURL.fallVal : 0;
     this.isFallen = 0;

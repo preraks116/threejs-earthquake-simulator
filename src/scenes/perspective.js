@@ -216,7 +216,7 @@ const sceneObjects = {
   model9: new GLTFModel(
     {
       position: { x: 25, z: 30 },
-      mass: 50,
+      mass: 150,
       resourceURL: gltfModels.tower,
     },
     scene,
@@ -225,7 +225,7 @@ const sceneObjects = {
   model11: new GLTFModel(
     {
       position: { x: 30, z: 30 },
-      mass: 50,
+      mass: 5,
       resourceURL: gltfModels.wideA,
     },
     scene,
@@ -306,7 +306,7 @@ const sceneObjects = {
   model16: new GLTFModel(
     {
       position: { x: 30, z: 40 },
-      mass: 50,
+      mass: 150,
       resourceURL: gltfModels.tower,
     },
     scene,
@@ -316,7 +316,7 @@ const sceneObjects = {
     {
       position: { x: 7, z: 30 },
       rotation: { x: 0, y: Math.PI/2, z: 0 },
-      mass: 50,
+      mass: 5,
       resourceURL: gltfModels.wideA,
     },
     scene,
@@ -337,7 +337,7 @@ const sceneObjects = {
   model3_1: new GLTFModel(
     {
       position: { x: 20, z: -10 },
-      mass: 50,
+      mass: 150,
       resourceURL: gltfModels.tower,
     },
     scene,
@@ -431,7 +431,7 @@ const sceneObjects = {
   model6_1: new GLTFModel(
     {
       position: { x: 10, z: -20 },
-      mass: 50,
+      mass: 150,
       resourceURL: gltfModels.tower,
     },
     scene,
@@ -537,7 +537,7 @@ const sceneObjects = {
   model11_1: new GLTFModel(
     {
       position: { x: 30, z: -30 },
-      mass: 50,
+      mass: 5,
       resourceURL: gltfModels.wideA,
     },
     scene,
@@ -609,7 +609,7 @@ const sceneObjects = {
   model15_1: new GLTFModel(
     {
       position: { x: 20, z: -40 },
-      mass: 50,
+      mass: 150,
       resourceURL: gltfModels.tower,
     },
     scene,
@@ -628,7 +628,7 @@ const sceneObjects = {
     {
       position: { x: 7, z: -30 },
       rotation: { x: 0, y: Math.PI/2, z: 0 },
-      mass: 50,
+      mass: 5,
       resourceURL: gltfModels.wideA,
     },
     scene,
@@ -699,7 +699,7 @@ const sceneObjects = {
   model33: new GLTFModel(
     {
       position: { x: -42, z: -7 },
-      mass: 50,
+      mass: 150,
       resourceURL: gltfModels.tower,
     },
     scene,
@@ -708,7 +708,7 @@ const sceneObjects = {
   model34: new GLTFModel(
     {
       position: { x: -9, z: -17 },
-      mass: 50,
+      mass: 150,
       resourceURL: gltfModels.tower,
     },
     scene,
@@ -861,7 +861,7 @@ const sceneObjects = {
   model51: new GLTFModel(
     {
       position: { x: -21, z: -25 },
-      mass: 50,
+      mass: 5,
       resourceURL: gltfModels.wideA,
     },
     scene,
@@ -870,7 +870,7 @@ const sceneObjects = {
   model52: new GLTFModel(
     {
       position: { x: -27, z: -25 },
-      mass: 50,
+      mass: 5,
       resourceURL: gltfModels.wideA,
     },
     scene,
@@ -915,7 +915,7 @@ const sceneObjects = {
   model33a: new GLTFModel(
     {
       position: { x: -42, z:7 },
-      mass: 50,
+      mass: 150,
       resourceURL: gltfModels.tower,
     },
     scene,
@@ -924,7 +924,7 @@ const sceneObjects = {
   model34a: new GLTFModel(
     {
       position: { x: -9, z: 17 },
-      mass: 50,
+      mass: 150,
       resourceURL: gltfModels.tower,
     },
     scene,
@@ -1077,7 +1077,7 @@ const sceneObjects = {
   model51a: new GLTFModel(
     {
       position: { x: -21, z: 25 },
-      mass: 50,
+      mass: 5,
       resourceURL: gltfModels.wideA,
     },
     scene,
@@ -1086,12 +1086,48 @@ const sceneObjects = {
   model52a: new GLTFModel(
     {
       position: { x: -27, z: 25 },
-      mass: 50,
+      mass: 5,
       resourceURL: gltfModels.wideA,
     },
     scene,
     world
   ),
+
+
+
+text: new Text(
+  {
+    width: 25.2,
+    height: 8.5,
+    padding: 0.5,
+    justifyContent: "center",
+    textAlign: "left",
+    fontFamily: FontJSON,
+    fontTexture: FontImage,
+    position: { x: 20, y: 35, z: 90 },
+    rotation: { x: 0, y: 0, z: 0 },
+    text: [
+      {
+        content: "THREEJS EARTHQUAKE SIMULATOR\n",
+        fontSize: 0.855,
+      },
+      {
+        content:
+          "You can use the sliders from the GUI to control the earthquake.\n\n",
+        fontSize: 0.58,
+      },
+      {
+        content: "Press I to view collision hitboxes\n",
+        fontSize: 0.56,
+      },
+      {
+        content: "Press 'Start' to start simulation",
+        fontSize: 0.56,
+      }
+    ],
+  },
+  scene
+),
 };
 
 for (let i = -20; i < 23; i++) {
@@ -1147,6 +1183,7 @@ for (let i = 0; i < 20; i++) {
     {
       position: { x: -3.61 - 2.4 * i, z: 2.4 },
       mass: 50,
+      //type: 'road',
       resourceURL: gltfModels.road,
     },
     scene,

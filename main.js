@@ -31,13 +31,42 @@ import {
 } from "./src/scenes/perspective";
 // import { sceneObjects, lighting, camera, scene, world, cannonDebugger } from './src/scenes/isometric';
 
+let initScene = scene;
+let initWorld = world;
 let camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 1, 20000 );
-camera.position.set( 30, 80, 100 );
+camera.position.set( 0, 50, 130 );
 let casualties = 0, deaths = 0, damages = 0;
+let amplitudeController, timePeriodController, factorController;
 // camera.position.set( 0, 400, 0 );
 
 const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 const statsDOM = document.getElementById('stats');
+const start = document.getElementById('start');
+const stop = document.getElementById('stop');
+
+start.onclick = () => {
+  let tl = GSAP.gsap.timeline();
+  tl.to(sceneObjects.cube6, { duration: 30, amplitude: 3.5 });
+  tl.to(sceneObjects.cube6, { duration: 0.5, timePeriod: 200 });
+  tl.to({}, 5, {});
+  tl.to(sceneObjects.cube6, { duration: 0.5, timePeriod: 300 });
+  tl.to({}, 5, {});
+  tl.to(sceneObjects.cube6, { duration: 0.5, timePeriod: 400 });
+  tl.to({}, 5, {});
+  tl.to(sceneObjects.cube6, { duration: 0.5, timePeriod: 500 });
+  tl.to({}, 5, {});
+  tl.to(sceneObjects.cube6, { duration: 30, factor: 4 });
+  tl.to({}, 5, {});
+}
+
+stop.onclick = () => {
+  GSAP.gsap.to(sceneObjects.cube6, { duration: 1, amplitude: 0, onComplete: () => {
+    GSAP.gsap.killTweensOf(sceneObjects.cube6);
+  } });
+}
+
+
+
 let controls, stats;
 let intersects = [];
 const player = sceneObjects["player"];
@@ -139,86 +168,6 @@ function updateSun() {
 
   scene.environment = renderTarget.texture;
 }
-updateSun();
-
-
-function makeTextPanel() {
-  const container = new ThreeMeshUI.Block({
-    width: 1.2,
-    height: 0.5,
-    padding: 0.05,
-    justifyContent: "center",
-    textAlign: "left",
-    fontFamily: FontJSON,
-    fontTexture: FontImage,
-  });
-
-  container.position.set(0, 1, -1.8);
-  container.rotation.x = -0.55;
-  scene.add(container);
-
-  //
-
-  container.add(
-    new ThreeMeshUI.Text({
-      content: "This library supports line-break-friendly-characters,",
-      fontSize: 0.055,
-    }),
-
-    new ThreeMeshUI.Text({
-      content:
-        " As well as multi-font-size lines with consistent vertical spacing.",
-      fontSize: 0.08,
-    })
-  );
-}
-
-
-// text class 
-class Text {
-  constructor(props,scene) {
-    this.width = props.width;
-    this.height = props.height;
-    this.padding = props.padding;
-    this.justifyContent = props.justifyContent;
-    this.textAlign = props.textAlign;
-    this.fontFamily = props.fontFamily;
-    this.fontTexture = props.fontTexture;
-    this.position = props.position;
-    this.rotation = props.rotation;
-    this.text = props.text;
-    this.scene = scene;
-
-    this.container = new ThreeMeshUI.Block({
-      width: this.width,
-      height: this.height,
-      padding: this.padding,
-      justifyContent: this.justifyContent,
-      textAlign: this.textAlign,
-      fontFamily: this.fontFamily,
-      fontTexture: this.fontTexture,
-    });
-
-    
-  }
-  render() {
-    console.log(this.position);
-    this.container.position.set(this.position.x, this.position.y, this.position.z);
-    this.container.rotation.set(this.rotation.x, this.rotation.y, this.rotation.z);
-    this.scene.add(this.container);
-
-    for(let key in this.text){
-      let text = this.text[key];
-      this.container.add(new ThreeMeshUI.Text({
-        content: text.content,
-        fontSize: text.fontSize,
-      }));
-    }
-  }
-}
-
-
-
 
 
 async function init() {
@@ -238,8 +187,7 @@ async function init() {
   raycaster = new THREE.Raycaster();
   mouse = new THREE.Vector2();
 
-  // load camera
-  // camera.render();
+  updateSun();
 
   // orbit controls
   // controls = new OrbitControls(camera.camera, renderer.domElement);
@@ -256,65 +204,15 @@ async function init() {
     lighting[key].render();
   }
 
-  // const text = new Text({
-  //   width: 10.2,
-  //   height: 5.5,
-  //   padding: 0.5,
-  //   justifyContent: 'center',
-  //   textAlign: 'left',
-  //   fontFamily: FontJSON,
-  //   fontTexture: FontImage,
-  //   position: { x: 25, y: 20, z: 80.8 },
-  //   rotation: { x: -0.55, y: 0, z: 0 },
-  //   // text: {
-  //   //   first: {
-  //   //     content: 'This library supports line-break-friendly-characters,',
-  //   //     fontSize: 0.055
-  //   //   },
-  //   //   second: {
-  //   //     content: 'As well as multi-font-size lines with consistent vertical spacing.',
-  //   //     fontSize: 0.08
-  //   //   },
-  //   //   third: {
-  //   //     content: 'This library supports line-break-friendly-characters,',
-  //   //     fontSize: 0.06
-  //   //   }
-  //   // }
-  //   text: [
-  //     {
-  //       content: 'This library supports line-break-friendly-characters,',
-  //       fontSize: 0.555
-  //     },
-  //     {
-  //       content: 'As well as multi-font-size lines with consistent vertical spacing.',
-  //       fontSize: 0.58
-  //     },
-  //     {
-  //       content: 'This library supports line-break-friendly-characters,',
-  //       fontSize: 0.56
-  //     }
-  //   ]
-  // }, scene);
-  // console.log(text);
-
-  // text.render()
-
   // renders all objects in scene
   for (let key in sceneObjects) {
     sceneObjects[key].render();
   }
 
-
-  // makeTextPanel();
-
   stats = new Stats();
-  // add custom panel
-  // add memory panel
-  // stats.addPanel(new Stats.Panel('Memory', '#ff8', '#221'));
   stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3: mem, 4: calls, 5: raf, 6: all
   document.body.appendChild(stats.dom);
 
-  // lighting.ambientLight.intensity = 1;
   // add gui
   const gui = new GUI();
   const earthquakeFolder = gui.addFolder("Earthquake");
@@ -338,9 +236,14 @@ async function init() {
       sceneObjects.cube6.factor = value;
     }
   }
-  earthquakeFolder.add(earthquakeFolderProps, "Factor", 0.1, 10, 0.1);
-  earthquakeFolder.add(earthquakeFolderProps, "TimePeriod", 10, 1000, 10);
-  earthquakeFolder.add(earthquakeFolderProps, "Amplitude", 0, 5, 0.01);
+  factorController = earthquakeFolder.add(earthquakeFolderProps, "Factor", 0.1, 10, 0.1);
+  timePeriodController = earthquakeFolder.add(earthquakeFolderProps, "TimePeriod", 10, 1000, 10);
+  amplitudeController = earthquakeFolder.add(earthquakeFolderProps, "Amplitude", 0, 5, 0.01);
+
+  amplitudeController.onChange(function(value) {
+    console.log(value);
+  })
+  
   const lightingFolder = gui.addFolder("Lighting");
   const directionalLightFolder = lightingFolder.addFolder("Directional Light");
   const directionalLightPositionFolder =
@@ -467,6 +370,8 @@ function getStats() {
     }
     else if(object.type === 'building' && object.isFallen) {
       damages += object.cost;
+      // deaths += 0.2*object.population;
+      // casualties += 0.8*object.population;
     }
   }
 }
@@ -477,6 +382,9 @@ function animate() {
   stats.begin();
   ThreeMeshUI.update();
   water.material.uniforms[ 'time' ].value += 1.0 / 60.0;
+  amplitudeController.updateDisplay();
+  timePeriodController.updateDisplay();
+  factorController.updateDisplay();
   // renderer.render(scene, camera.camera);
   renderer.render(scene, camera);
   stats.end();
