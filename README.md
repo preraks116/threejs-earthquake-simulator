@@ -9,12 +9,21 @@
 - Shavak Kansal
 - Shreeya Singh 
 
+## Preview
+![Alt text](/src/assets/preview.png "a title")
 ## Running the Code 
-
 ```
 $ npm i
 $ npm run dev
 ```
+
+## Controls
+- **Left Mouse Click**: Rotate Camera
+- **Right Mouse Click**: Pan Camera
+- **Mouse Scroll**: Zoom Camera
+- **I**: Toggle Hitbox Information
+- **Start**: Start Simulation
+- **Stop**: Stop Simulation
 
 ## Earthquake Parameters
 The ground moves according to a sine wave to simulate a earthquake (written in `plane.js`)
