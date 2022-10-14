@@ -402,7 +402,7 @@ function animate() {
       <br>
       <p>Casualties: ${casualties*10} </p>
       <p>Deaths: ${deaths*10} </p>
-      <p>Damages (INR) ${damages.toFixed(3)} Cr</p>
+      <p>Damages (INR): ${damages.toFixed(3)} Cr</p>
     </div>
   `;
 
