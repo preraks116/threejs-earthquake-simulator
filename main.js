@@ -23,12 +23,14 @@ import * as GSAP from "gsap";
 
 import {
   sceneObjects,
+  buildings,
   lighting,
   // camera,
   scene,
   world,
   cannonDebugger,
 } from "./src/scenes/perspective";
+import { toggleTransparency } from "./src/components/objects/models/gltfModel";
 // import { sceneObjects, lighting, camera, scene, world, cannonDebugger } from './src/scenes/isometric';
 
 let initScene = scene;
@@ -69,6 +71,7 @@ stop.onclick = () => {
 
 let controls, stats;
 let intersects = [];
+let val = true;
 const player = sceneObjects["player"];
 var mouse, raycaster;
 
@@ -325,7 +328,28 @@ async function init() {
   // window.addEventListener("click", onClick);
   window.addEventListener("mousemove", onMouseMove, false);
   // window.addEventListener("wheel", (e) => setZoom(e, camera));
-  window.addEventListener("keydown", (e) => setKey(e, true));
+  window.addEventListener("keydown", (e) => {
+    if (e.key === 'a') { // to remove shapes from a body
+      // sceneObjects.model2.body.removeShape(sceneObjects.model2.body.shapes[0]);
+    }
+    else if(e.key === 't') {
+      console.log(buildings);
+      for(let key in buildings) {
+        let building = buildings[key];
+        toggleTransparency(building.model, true)
+      }
+    }
+    else if(e.key === 'r') {
+      console.log(buildings);
+      for(let key in buildings) {
+        let building = buildings[key];
+        toggleTransparency(building.model, false)
+      }
+    }
+    else {
+      setKey(e, true)
+    }
+  });
   window.addEventListener("resize", onWindowResize);
   window.addEventListener("keyup", (e) => setKey(e, false));
 }

@@ -38,7 +38,7 @@ class Text {
     );
     
     // this.container.lookAt(0,0,0);
-    console.log(this.container);
+    // console.log(this.container);
     this.scene.add(this.container);
 
     for (let key in this.text) {

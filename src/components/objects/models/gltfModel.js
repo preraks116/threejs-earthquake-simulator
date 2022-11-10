@@ -6,6 +6,8 @@ import { threeToCannon, ShapeType } from 'three-to-cannon';
 
 const gltfLoader = new GLTFLoader();
 
+const WALL_THICKNESS = 0.5
+
 // dimension in model is Vec3
 
 function addColliders(colliders, body) {
@@ -38,12 +40,36 @@ function addColliders(colliders, body) {
   }
 }
 
+function toggleTransparency(object, val) {
+  for (let i = 0; i < object.children.length; i++) {
+    let child = object.children[i];
+    console.log(val);
+    if (child.isMesh) {
+      if(val) {
+        // child.material.opacity = 0
+        child.material.transparent = true
+        child.material.opacity = 0.5
+      }
+      else {
+        child.material.transparent = false
+        child.material.opacity = 1
+      }
+    }
+    else {
+      toggleTransparency(child, val);
+    }
+  }
+
+}
 
 function enableShadows(object) {
   for (let i = 0; i < object.children.length; i++) {
     let child = object.children[i];
     
     if (child.isMesh) {
+      // child.material.opacity = 0
+      // child.material.transparent = true
+      // child.material.opacity = 0.5
       // console.log(child);
       child.material.metalness = 0;
       // child.material.color = new THREE.Color(0xff0000);
@@ -165,11 +191,24 @@ class GLTFModel {
       this.body = new CANNON.Body({
         mass: this.mass,
         position: new CANNON.Vec3(this.position.x, this.position.y, this.position.z),
-        shape: new CANNON.Box(new CANNON.Vec3(this.dimension.x / 2, this.dimension.y / 2, this.dimension.z / 2)),
+        // shape: this.type === 'human' ? new CANNON.Sphere(this.dimension.x/2) : new CANNON.Box(new CANNON.Vec3(this.dimension.x/2, this.dimension.y/2, this.dimension.z/2)),  
         linearDamping: this.linearDamping,
         angularDamping: this.angularDamping,
         material: this.material
       });
+      console.log(this.type);
+      if(this.type === 'human') {
+        this.body.addShape(new CANNON.Box(new CANNON.Vec3(this.dimension.x / 2, this.dimension.y / 2, this.dimension.z / 2)))
+      }
+      else { // for building
+        this.body.addShape(new CANNON.Box(new CANNON.Vec3(this.dimension.x / 2, WALL_THICKNESS, this.dimension.z / 2)), new CANNON.Vec3(0, -this.dimension.y / 2 + WALL_THICKNESS, 0));
+        this.body.addShape(new CANNON.Box(new CANNON.Vec3(this.dimension.x / 2, WALL_THICKNESS, this.dimension.z / 2)), new CANNON.Vec3(0, this.dimension.y / 2 - WALL_THICKNESS, 0));
+        this.body.addShape(new CANNON.Box(new CANNON.Vec3(WALL_THICKNESS, this.dimension.y / 2, this.dimension.z / 2)), new CANNON.Vec3(this.dimension.x / 2 - WALL_THICKNESS, 0, 0));
+        this.body.addShape(new CANNON.Box(new CANNON.Vec3(WALL_THICKNESS, this.dimension.y / 2, this.dimension.z / 2)), new CANNON.Vec3(-this.dimension.x / 2 + WALL_THICKNESS, 0, 0));
+        this.body.addShape(new CANNON.Box(new CANNON.Vec3(this.dimension.x / 2, this.dimension.y / 2, WALL_THICKNESS)), new CANNON.Vec3(0, 0, this.dimension.z / 2 - WALL_THICKNESS));
+        this.body.addShape(new CANNON.Box(new CANNON.Vec3(this.dimension.x / 2, this.dimension.y / 2, WALL_THICKNESS)), new CANNON.Vec3(0, 0, -this.dimension.z / 2 + WALL_THICKNESS));
+
+      }
       // if(this.colliders) {
       //   addColliders(this.colliders, this.body);
       // }
@@ -232,4 +271,4 @@ class GLTFModel {
   }
 }
 
-export { GLTFModel };
+export { GLTFModel, toggleTransparency };

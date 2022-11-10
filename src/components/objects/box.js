@@ -3,6 +3,9 @@ import * as CANNON from 'cannon-es';
 import { keyDict } from '../../utils/keyControls';
 import { EventDispatcher } from 'three';
 
+var GROUP1 = 1;
+var GROUP2 = 2;
+var GROUP3 = 4;
 
 class Box {
     constructor(props, scene, world) {
@@ -54,6 +57,7 @@ class Box {
             position: new CANNON.Vec3(this.position.x, this.position.y, this.position.z),
             linearDamping: this.linearDamping,
             angularDamping: this.angularDamping,
+            // collisionFilterGroup: GROUP1,
             material: this.material
         });
         // get dimensions of mesh
