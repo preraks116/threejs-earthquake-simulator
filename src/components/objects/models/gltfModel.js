@@ -203,8 +203,15 @@ class GLTFModel {
       else { // for building
         this.body.addShape(new CANNON.Box(new CANNON.Vec3(this.dimension.x / 2, WALL_THICKNESS, this.dimension.z / 2)), new CANNON.Vec3(0, -this.dimension.y / 2 + WALL_THICKNESS, 0));
         this.body.addShape(new CANNON.Box(new CANNON.Vec3(this.dimension.x / 2, WALL_THICKNESS, this.dimension.z / 2)), new CANNON.Vec3(0, this.dimension.y / 2 - WALL_THICKNESS, 0));
+
+        this.body.addShape(new CANNON.Box(new CANNON.Vec3(this.dimension.x / 2, WALL_THICKNESS, this.dimension.z / 2)), new CANNON.Vec3(0, -this.dimension.y / 2 *(1/5) , 0));
+        this.body.addShape(new CANNON.Box(new CANNON.Vec3(this.dimension.x / 2, WALL_THICKNESS, this.dimension.z / 2)), new CANNON.Vec3(0, this.dimension.y / 2 *(1/5) , 0));
+
+
+
         this.body.addShape(new CANNON.Box(new CANNON.Vec3(WALL_THICKNESS, this.dimension.y / 2, this.dimension.z / 2)), new CANNON.Vec3(this.dimension.x / 2 - WALL_THICKNESS, 0, 0));
         this.body.addShape(new CANNON.Box(new CANNON.Vec3(WALL_THICKNESS, this.dimension.y / 2, this.dimension.z / 2)), new CANNON.Vec3(-this.dimension.x / 2 + WALL_THICKNESS, 0, 0));
+
         this.body.addShape(new CANNON.Box(new CANNON.Vec3(this.dimension.x / 2, this.dimension.y / 2, WALL_THICKNESS)), new CANNON.Vec3(0, 0, this.dimension.z / 2 - WALL_THICKNESS));
         this.body.addShape(new CANNON.Box(new CANNON.Vec3(this.dimension.x / 2, this.dimension.y / 2, WALL_THICKNESS)), new CANNON.Vec3(0, 0, -this.dimension.z / 2 + WALL_THICKNESS));
 

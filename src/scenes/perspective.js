@@ -127,6 +127,25 @@ const sceneObjects = {
     scene,
     world
   ),
+
+  human1_1: new GLTFModel({ 
+    position: { x: 10, y: 5, z: 10 },
+    mass: 1,
+    resourceURL: gltfModels.human,
+  }, scene, world),
+
+  human1_2: new GLTFModel({
+    position: { x: 10, y: 15, z: 10 },
+    mass: 1,
+    resourceURL: gltfModels.human,
+  }, scene, world),
+
+  human1_3: new GLTFModel({
+    position: { x: 10, y: 12, z: 10 },
+    mass: 1,
+    resourceURL: gltfModels.human,
+  }, scene, world),
+
   // model3: new GLTFModel(
   //   {
   //     position: { x: 20, z: 10 },
