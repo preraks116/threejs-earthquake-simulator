@@ -84,14 +84,32 @@ let buildings = {};
 // dictionary of all objects
 const sceneObjects = {
   /////////////////////// ISLAND
+  // cube6: new Box(
+  //   {
+  //     // position: { x: 5, y: 0, z: -1.75 },
+  //     position: { x: 25, y: 0, z: 3 },
+  //     color: 0xffffff,
+  //     dimension: { x: 50, y: 5, z: 100 },
+  //     speed: 1000,
+  //     mass: 0,
+  //     linearDamping: 0.3,
+  //     type: "ground1",
+  //     // textures: textures.brick,
+  //     factor: 7.5,
+  //     amplitude: 0,
+  //     timePeriod: 100,
+  //   },
+  //   scene,
+  //   world
+  // ),
   cube6: new Box(
     {
       // position: { x: 5, y: 0, z: -1.75 },
-      position: { x: 25, y: 0, z: 3 },
+      position: { x: 1, y: 0, z: 3 },
       color: 0xffffff,
-      dimension: { x: 50, y: 5, z: 100 },
+      dimension: { x: 150, y: 5, z: 150 },
       speed: 1000,
-      mass: 0,
+      mass: 500,
       linearDamping: 0.3,
       type: "ground1",
       // textures: textures.brick,
@@ -103,24 +121,24 @@ const sceneObjects = {
     world
   ),
 
-  cube7: new Box(
-    {
-      // position: { x: 5, y: 0, z: -1.75 },
-      position: { x: -25, y: 0, z: 3 },
-      color: 0xffffff,
-      dimension: { x: 50, y: 5, z: 100 },
-      speed: 1000,
-      mass: 0,
-      linearDamping: 0.3,
-      type: "ground2",
-      // textures: textures.brick,
-      factor: 7.5,
-      amplitude: 0,
-      timePeriod: 100,
-    },
-    scene,
-    world
-  ),
+  // cube7: new Box(
+  //   {
+  //     // position: { x: 5, y: 0, z: -1.75 },
+  //     position: { x: -25, y: 0, z: 3 },
+  //     color: 0xffffff,
+  //     dimension: { x: 50, y: 5, z: 100 },
+  //     speed: 1000,
+  //     mass: 0,
+  //     linearDamping: 0.3,
+  //     type: "ground2",
+  //     // textures: textures.brick,
+  //     factor: 7.5,
+  //     amplitude: 0,
+  //     timePeriod: 100,
+  //   },
+  //   scene,
+  //   world
+  // ),
   ////////////////////////
   human1: new GLTFModel({ position: { x: -30, z: 30 }, resourceURL: gltfModels.human }, scene, world),
   human2: new GLTFModel({ position: { x: 11, z: 30 }, resourceURL: gltfModels.human }, scene, world),
@@ -1162,13 +1180,8 @@ text: new Text(
 ),
 };
 
-for(let key in sceneObjects) {
-  let object = sceneObjects[key];
-  // key has model name then add to buildings
-  if(key.includes('model')) {
-    buildings[key] = object;
-  }
-}
+
+console.log(buildings);
 // for (let i = -20; i < 23; i++) {
 //   sceneObjects[`road1${i}}`] = new GLTFModel(
 //     {

@@ -47,6 +47,7 @@ function toggleTransparency(object, val) {
     if (child.isMesh) {
       if(val) {
         // child.material.opacity = 0
+        console.log(child);
         child.material.transparent = true
         child.material.opacity = 0.3
       }
@@ -228,7 +229,7 @@ class GLTFModel {
           // console.log(e);
           if(Math.abs(relativeVelocity) > this.resourceURL.killVal){
             // More energy
-            console.log("dead human")
+            // console.log("dead human")
             changeColor(this.model, 0xff0000);
             this.isFallen = 1;
             this.isDead = 1;
@@ -253,7 +254,7 @@ class GLTFModel {
 
           if(Math.abs(relativeVelocity) > this.resourceURL.fallVal){
             // More energy
-            console.log("fallen building")
+            // console.log("fallen building")
             // changeColor(this.model, 0xff0000);
             this.isFallen = 1;
             // console.log(this.model);

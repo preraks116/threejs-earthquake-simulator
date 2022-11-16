@@ -1,0 +1,9 @@
+On 16-Nov-2022 14:47:58, the following files were downloaded via the Strong-motion Virtual Data Center.
+Please credit the originating agencies and institutions and Virtual Data Center in any publications or reports that utilize this data.
+
+https://strongmotioncenter.org/vdc/waveform_data/india/200101260317/ahmdgv.dat
+https://strongmotioncenter.org/vdc/waveform_data/india/200101260317/ahmdgv.vs
+https://strongmotioncenter.org/vdc/waveform_data/india/200101260317/ahmdgl.dat
+https://strongmotioncenter.org/vdc/waveform_data/india/200101260317/ahmdgt.dat
+https://strongmotioncenter.org/vdc/waveform_data/india/200101260317/ahmdgl.ls
+https://strongmotioncenter.org/vdc/waveform_data/india/200101260317/ahmdgt.ts

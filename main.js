@@ -48,7 +48,7 @@ const stop = document.getElementById('stop');
 
 start.onclick = () => {
   sceneObjects.cube6.isMoving = true;
-  sceneObjects.cube7.isMoving = true;
+  // sceneObjects.cube7.isMoving = true;
   let tl = GSAP.gsap.timeline();
   tl.to(sceneObjects.cube6, { duration: 30, amplitude: 3.5 });
   tl.to(sceneObjects.cube6, { duration: 0.5, timePeriod: 200 });
@@ -62,29 +62,29 @@ start.onclick = () => {
   tl.to(sceneObjects.cube6, { duration: 30, factor: 4 });
   tl.to({}, 5, {});
 
-  let tl2 = GSAP.gsap.timeline();
-  tl2.to(sceneObjects.cube7, { duration: 30, amplitude: 3.5 });
-  tl2.to(sceneObjects.cube7, { duration: 0.5, timePeriod: 200 });
-  tl2.to({}, 5, {});
-  tl2.to(sceneObjects.cube7, { duration: 0.5, timePeriod: 300 });
-  tl2.to({}, 5, {});
-  tl2.to(sceneObjects.cube7, { duration: 0.5, timePeriod: 400 });
-  tl2.to({}, 5, {});
-  tl2.to(sceneObjects.cube7, { duration: 0.5, timePeriod: 500 });
-  tl2.to({}, 5, {});
-  tl2.to(sceneObjects.cube7, { duration: 30, factor: 4 });
-  tl2.to({}, 5, {});
+  // let tl2 = GSAP.gsap.timeline();
+  // tl2.to(sceneObjects.cube7, { duration: 30, amplitude: 3.5 });
+  // tl2.to(sceneObjects.cube7, { duration: 0.5, timePeriod: 200 });
+  // tl2.to({}, 5, {});
+  // tl2.to(sceneObjects.cube7, { duration: 0.5, timePeriod: 300 });
+  // tl2.to({}, 5, {});
+  // tl2.to(sceneObjects.cube7, { duration: 0.5, timePeriod: 400 });
+  // tl2.to({}, 5, {});
+  // tl2.to(sceneObjects.cube7, { duration: 0.5, timePeriod: 500 });
+  // tl2.to({}, 5, {});
+  // tl2.to(sceneObjects.cube7, { duration: 30, factor: 4 });
+  // tl2.to({}, 5, {});
 }
 
 stop.onclick = () => {
   GSAP.gsap.to(sceneObjects.cube6, { duration: 1, amplitude: 0, onComplete: () => {
     GSAP.gsap.killTweensOf(sceneObjects.cube6);
   }});
-  GSAP.gsap.to(sceneObjects.cube7, { duration: 1, amplitude: 0, onComplete: () => {
-    GSAP.gsap.killTweensOf(sceneObjects.cube7);
-  }});
+  // GSAP.gsap.to(sceneObjects.cube7, { duration: 1, amplitude: 0, onComplete: () => {
+  //   GSAP.gsap.killTweensOf(sceneObjects.cube7);
+  // }});
   sceneObjects.cube6.isMoving = false;
-  sceneObjects.cube7.isMoving = false;
+  // sceneObjects.cube7.isMoving = false;
 }
 
 
@@ -245,28 +245,28 @@ async function init() {
     },
     set Amplitude(value) {
       sceneObjects.cube6.amplitude = value;
-      sceneObjects.cube7.amplitude = value;
+      // sceneObjects.cube7.amplitude = value;
     },
     get TimePeriod() {
       return sceneObjects.cube6.timePeriod;
     },
     set TimePeriod(value) {
       sceneObjects.cube6.timePeriod = value;
-      sceneObjects.cube7.timePeriod = value;
+      // sceneObjects.cube7.timePeriod = value;
     },
     get Factor() {
       return sceneObjects.cube6.factor;
     },
     set Factor(value) {
       sceneObjects.cube6.factor = value;
-      sceneObjects.cube7.factor = value;
+      // sceneObjects.cube7.factor = value;
     },
     get FaultLineLength() {
       return sceneObjects.cube6.faultLineLength;
     },
     set FaultLineLength(value) {
       sceneObjects.cube6.faultLineLength = value;
-      sceneObjects.cube7.faultLineLength = value;
+      // sceneObjects.cube7.faultLineLength = value;
     }
   }
   factorController = earthquakeFolder.add(earthquakeFolderProps, "Factor", 0.1, 10, 0.1);
@@ -364,6 +364,13 @@ async function init() {
       // sceneObjects.model2.body.removeShape(sceneObjects.model2.body.shapes[0]);
     }
     else if(e.key === 't') {
+      for(let key in sceneObjects) {
+        let object = sceneObjects[key];
+        // key has model name then add to buildings
+        if(key.includes('model')) {
+          buildings[key] = object;
+        }
+      }
       console.log(buildings);
       for(let key in buildings) {
         let building = buildings[key];

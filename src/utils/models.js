@@ -28,7 +28,7 @@ const gltfModels = {
         file: 'building/untitled.glb',
         type: 'building',
         Y: 7.5,
-        mass: 75,
+        mass: 7.5,
         scale: 6,
         fallVal: 15,
         cost: 50
@@ -37,7 +37,7 @@ const gltfModels = {
         file: 'building/hospital.glb',
         type: 'building',
         Y: 10,
-        mass: 200,
+        mass: 20,
         scale: 6,
         fallVal: 15,
         cost: 300
@@ -46,7 +46,7 @@ const gltfModels = {
         file: 'building/pubg.glb',
         type: 'building',
         Y: 7.5,
-        mass: 150,
+        mass: 15,
         scale: 6,
         fallVal: 15,
         cost: 150
@@ -54,7 +54,7 @@ const gltfModels = {
     road: {
         file: 'building/road.glb',
         type: 'road',
-        mass: 5,
+        mass: 0.5,
         Y: 3,
         scale: 6,
         fallVal: 15,
@@ -64,7 +64,7 @@ const gltfModels = {
         file: 'building/tower.glb',
         type: 'building',
         Y: 13,
-        mass: 150,
+        mass: 15,
         scale: 12,
         fallVal: 15,
         cost: 200
@@ -72,7 +72,7 @@ const gltfModels = {
     skyE: {
         file: 'building/skyE.glb',
         type: 'building',
-        mass: 100,
+        mass: 10,
         Y: 12,
         scale: 6,
         fallVal: 15,
@@ -82,7 +82,7 @@ const gltfModels = {
         file: 'building/wideAwning.glb',
         type: 'building',
         Y: 4,
-        mass: 5,
+        mass: 0.5,
         scale: 6,
         fallVal: 15,
         cost: 0.001
@@ -90,7 +90,7 @@ const gltfModels = {
     smallA: {
         file: 'building/smallA.glb',
         type: 'building',
-        mass: 20,
+        mass: 2,
         Y: 6,
         scale: 5,
         fallVal: 15,
@@ -99,7 +99,7 @@ const gltfModels = {
     human: {
         file: 'inhabitants/human.glb',
         type: 'human',
-        mass: 1,
+        mass: 0.1,
         Y: 3.5,
         scale: 0.35,
         fallVal: 9,
