@@ -38,7 +38,7 @@ let initWorld = world;
 let camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 1, 20000 );
 camera.position.set( 0, 50, 130 );
 let casualties = 0, deaths = 0, damages = 0;
-let amplitudeController, timePeriodController, factorController;
+let amplitudeController, timePeriodController, factorController, faultLineLengthController;
 // camera.position.set( 0, 400, 0 );
 
 const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
@@ -47,6 +47,8 @@ const start = document.getElementById('start');
 const stop = document.getElementById('stop');
 
 start.onclick = () => {
+  sceneObjects.cube6.isMoving = true;
+  sceneObjects.cube7.isMoving = true;
   let tl = GSAP.gsap.timeline();
   tl.to(sceneObjects.cube6, { duration: 30, amplitude: 3.5 });
   tl.to(sceneObjects.cube6, { duration: 0.5, timePeriod: 200 });
@@ -59,12 +61,30 @@ start.onclick = () => {
   tl.to({}, 5, {});
   tl.to(sceneObjects.cube6, { duration: 30, factor: 4 });
   tl.to({}, 5, {});
+
+  let tl2 = GSAP.gsap.timeline();
+  tl2.to(sceneObjects.cube7, { duration: 30, amplitude: 3.5 });
+  tl2.to(sceneObjects.cube7, { duration: 0.5, timePeriod: 200 });
+  tl2.to({}, 5, {});
+  tl2.to(sceneObjects.cube7, { duration: 0.5, timePeriod: 300 });
+  tl2.to({}, 5, {});
+  tl2.to(sceneObjects.cube7, { duration: 0.5, timePeriod: 400 });
+  tl2.to({}, 5, {});
+  tl2.to(sceneObjects.cube7, { duration: 0.5, timePeriod: 500 });
+  tl2.to({}, 5, {});
+  tl2.to(sceneObjects.cube7, { duration: 30, factor: 4 });
+  tl2.to({}, 5, {});
 }
 
 stop.onclick = () => {
   GSAP.gsap.to(sceneObjects.cube6, { duration: 1, amplitude: 0, onComplete: () => {
     GSAP.gsap.killTweensOf(sceneObjects.cube6);
-  } });
+  }});
+  GSAP.gsap.to(sceneObjects.cube7, { duration: 1, amplitude: 0, onComplete: () => {
+    GSAP.gsap.killTweensOf(sceneObjects.cube7);
+  }});
+  sceneObjects.cube6.isMoving = false;
+  sceneObjects.cube7.isMoving = false;
 }
 
 
@@ -225,23 +245,34 @@ async function init() {
     },
     set Amplitude(value) {
       sceneObjects.cube6.amplitude = value;
+      sceneObjects.cube7.amplitude = value;
     },
     get TimePeriod() {
       return sceneObjects.cube6.timePeriod;
     },
     set TimePeriod(value) {
       sceneObjects.cube6.timePeriod = value;
+      sceneObjects.cube7.timePeriod = value;
     },
     get Factor() {
       return sceneObjects.cube6.factor;
     },
     set Factor(value) {
       sceneObjects.cube6.factor = value;
+      sceneObjects.cube7.factor = value;
+    },
+    get FaultLineLength() {
+      return sceneObjects.cube6.faultLineLength;
+    },
+    set FaultLineLength(value) {
+      sceneObjects.cube6.faultLineLength = value;
+      sceneObjects.cube7.faultLineLength = value;
     }
   }
   factorController = earthquakeFolder.add(earthquakeFolderProps, "Factor", 0.1, 10, 0.1);
   timePeriodController = earthquakeFolder.add(earthquakeFolderProps, "TimePeriod", 10, 1000, 10);
   amplitudeController = earthquakeFolder.add(earthquakeFolderProps, "Amplitude", 0, 5, 0.01);
+  faultLineLengthController = earthquakeFolder.add(earthquakeFolderProps, "FaultLineLength", 0, 10, 0.1);
 
   amplitudeController.onChange(function(value) {
     console.log(value);

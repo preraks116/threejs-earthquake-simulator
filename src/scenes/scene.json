@@ -1,0 +1,24 @@
+{
+    "base": {
+        "position": { "x": 1, "y": 10, "z": 3 },
+        "color": "0xffffff",
+        "dimension": { "x": 100, "y": 5, "z": 100 },
+        "speed": 1000,
+        "mass": 0,
+        "linearDamping": 0.3,
+        "type": "ground",
+        "factor": 7.5,
+        "amplitude": 0,
+        "timePeriod": 100
+    },
+    "buildings": {
+        "model2": {
+            "position": { "x": 10, "z": 10 },
+            "mass": 10,
+            "resourceURL": "skyE"
+        }
+    },
+    "humans": {
+
+    }
+}

@@ -22,9 +22,15 @@ class Island {
     
         this.geometryPoints = [];
     
-        for (let i = 0; i < this.points.length; i++) {
+        // for (let i = 0; i < this.points.length; i++) {
+        //     this.geometryPoints.push(
+        //     new THREE.Vector2(this.points[i].x, this.points[i].y)
+        //     );
+        //     this.geometryPoints[i].multiplyScalar(this.scale);
+        // }
+        for (let i = 0; i < 300; i++) {
             this.geometryPoints.push(
-            new THREE.Vector2(this.points[i].x, this.points[i].y)
+                new THREE.Vector2(569*(Math.cos(i*2*Math.PI/269) + Math.sin(i*2*Math.PI/269)) + Math.random()*69, 569*Math.sin(i*2*Math.PI/269) + Math.random()*69)
             );
             this.geometryPoints[i].multiplyScalar(this.scale);
         }
@@ -32,18 +38,27 @@ class Island {
         this.shape = new THREE.Shape(this.geometryPoints);
         this.geometry = new THREE.ExtrudeGeometry(this.shape, this.extrudeSettings);
         this.material = this.textures ? new THREE.MeshStandardMaterial(this.textures): new THREE.MeshPhongMaterial({ color: this.color });
-        console.log(this.material);
         this.mesh = new THREE.Mesh(this.geometry, this.material);
 
 
         this.body = new CANNON.Body({
             mass: 0,
             // shape: CannonUtils.CreateConvexPolyhedron(this.geometry),
-            shape: new CANNON.Box(new CANNON.Vec3(this.dimension.x / 2, this.dimension.y / 2, 0.01)),
+            // shape: new CANNON.Box(new CANNON.Vec3(this.dimension.x / 2, this.dimension.y / 2, 0.01)),
             position: new CANNON.Vec3(this.position.x, this.position.y, this.position.z),
             material: new CANNON.Material(),
-            linearDamping: this.linearDamping
+            linearDamping: this.linearDamping,
+            angularDamping: 0.1,
         });
+        this.body.addShape(new CANNON.Box(new CANNON.Vec3(this.dimension.x , this.dimension.y , 0.1)), new CANNON.Vec3(0, 0, -2.5));
+        this.body.addShape(new CANNON.Box(new CANNON.Vec3(this.dimension.x , this.dimension.y , 0.1)), new CANNON.Vec3(60, 60, -2.5));
+        this.body.addShape(new CANNON.Box(new CANNON.Vec3(this.dimension.x , this.dimension.y , 0.1)), new CANNON.Vec3(-60, -40, -2.5));
+
+        // this.body.addShape(new CANNON.Box(new CANNON.Vec3(this.dimension.x , this.dimension.y , 0.01)), new CANNON.Vec3(-10, -10, -2.5));
+        // this.body.addShape(new CANNON.Box(new CANNON.Vec3(this.dimension.x , this.dimension.y , 0.01)), new CANNON.Vec3(20, 20, -2.5));
+        // this.body.addShape(new CANNON.Box(new CANNON.Vec3(this.dimension.x , this.dimension.y , 0.01)), new CANNON.Vec3(-40, -40, -2.5));
+        // this.body.addShape(new CANNON.Box(new CANNON.Vec3(this.dimension.x , this.dimension.y , 0.01)), new CANNON.Vec3(40, -40, -2.5));
+        // this.body.addShape(new CANNON.Box(new CANNON.Vec3(this.dimension.x , this.dimension.y , 0.01)), new CANNON.Vec3(-40, 40, -2.5));
         this.body.position.set(0, this.position.y, 0);
         this.body.quaternion.setFromEuler(this.rotation.x, this.rotation.y, this.rotation.z);
     }
@@ -54,8 +69,7 @@ class Island {
     update() {
         // // follows sine wave
         this.body.position.x = Math.sin(Date.now() / this.timePeriod) * this.amplitude;
-        this.body.position.y += Math.sin(Date.now() / this.timePeriod*this.factor) * this.amplitude/this.factor;
-        this.body.velocity.x = Math.sin(Date.now() / this.timePeriod) * this.amplitude;
+        this.body.position.y = Math.sin(Date.now() / this.timePeriod*this.factor) * this.amplitude/this.factor;
     
         // // threejs part copying cannon part
         this.mesh.position.copy(this.body.position.vadd(new CANNON.Vec3(this.position.x, this.position.y - 2.5, this.position.z)));

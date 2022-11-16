@@ -48,7 +48,7 @@ function toggleTransparency(object, val) {
       if(val) {
         // child.material.opacity = 0
         child.material.transparent = true
-        child.material.opacity = 0.5
+        child.material.opacity = 0.3
       }
       else {
         child.material.transparent = false
@@ -196,7 +196,7 @@ class GLTFModel {
         angularDamping: this.angularDamping,
         material: this.material
       });
-      console.log(this.type);
+      // console.log(this.type);
       if(this.type === 'human') {
         this.body.addShape(new CANNON.Box(new CANNON.Vec3(this.dimension.x / 2, this.dimension.y / 2, this.dimension.z / 2)))
       }

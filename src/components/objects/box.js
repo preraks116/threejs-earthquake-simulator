@@ -16,14 +16,16 @@ class Box {
         this.clickColor = props.clickColor ? props.clickColor : 0xf00000;
         this.scene = scene;
         this.dimension = props.dimension;
-        this.speed = props.speed
+        this.speed = props.speed ? props.speed : 0.1;
+        this.isMoving = 0;
         this.world = world;
         this.type = props.type;
+        this.faultLineLength = props.faultLineLength ? props.faultLineLength : 5;
         this.density = props.density ? props.density : 1;
         this.isHoverable = props.isHoverable ? props.isHoverable : false;
         this.isClickable = props.isClickable ? props.isClickable : false;
-        this.linearDamping = props.linearDamping
-        this.angularDamping = props.angularDamping
+        this.linearDamping = props.linearDamping ? props.linearDamping : 0.9;
+        this.angularDamping = props.angularDamping ? props.angularDamping : 0.1;
         this.amplitude = props.amplitude ? props.amplitude : 0;
         this.timePeriod = props.timePeriod ? props.timePeriod : 0;
         this.factor = props.factor ? props.factor : 1;
@@ -62,6 +64,7 @@ class Box {
         });
         // get dimensions of mesh
         const box = new THREE.Box3().setFromObject(this.mesh);
+        console.log(box)
         // console.log(box);
         this.body.addShape(new CANNON.Box(new CANNON.Vec3(
             (box.max.x - box.min.x)/2, 
@@ -72,24 +75,31 @@ class Box {
         this.world.addBody(this.body);
     }
     update() {
-        if(this.type === 'player') {
-            for(let key in keyDict) {
-                if(keyDict[key].pressed) {
-                    this.body.velocity.x = -1*this.speed*keyDict[key].x;
-                    this.body.velocity.z = -1*this.speed*keyDict[key].z;
+        if(this.isMoving) {
+            if(this.type === 'ground1') {
+                this.body.position.x = (Math.sin(Date.now() / this.timePeriod) + Math.random()) * this.amplitude + this.position.x;
+                this.body.position.y = Math.sin(Date.now() / this.timePeriod*this.factor) * this.amplitude/this.factor;
+                // console.log(this.body.position.z)
+                while(this.body.position.z <= this.position.z + this.faultLineLength && Date.now() % 100 == 0) {
+                    this.body.position.z += 0.01;
+                    console.log(this.body.position.z)
                 }
+                // this.body.velocity.x = Math.sin(Date.now() / this.timePeriod) * this.amplitude;
             }
+            else if(this.type === 'ground2') {
+                this.body.position.x = (Math.sin(Date.now() / this.timePeriod) + Math.random()) * this.amplitude + this.position.x;
+                this.body.position.y = Math.sin(Date.now() / this.timePeriod*this.factor) * this.amplitude/this.factor;
+                // this.body.velocity.x = Math.sin(Date.now() / this.timePeriod) * this.amplitude;
+            }
+            // this.body.position.x = Math.sin(Date.now() / 1000) * 3;
+    
+            // threejs part copying cannon part
+            
         }
-        else if(this.type === 'ground') {
-            this.body.position.x = Math.sin(Date.now() / this.timePeriod) * this.amplitude;
-            this.body.position.y = Math.sin(Date.now() / this.timePeriod*this.factor) * this.amplitude/this.factor;
-            // this.body.velocity.x = Math.sin(Date.now() / this.timePeriod) * this.amplitude;
+        if(this.body) {
+            this.mesh.position.copy(this.body.position);
+            this.mesh.quaternion.copy(this.body.quaternion);
         }
-        // this.body.position.x = Math.sin(Date.now() / 1000) * 3;
-
-        // threejs part copying cannon part
-        this.mesh.position.copy(this.body.position);
-        this.mesh.quaternion.copy(this.body.quaternion);
     }
     onHover() {
         this.mesh.material.color.setHex(this.hoverColor);
