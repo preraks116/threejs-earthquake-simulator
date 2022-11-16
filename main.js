@@ -110,8 +110,8 @@ let water = new Water(
   // sphereGeometry,
   // convexGeometry,
   {
-    textureWidth: 512,
-    textureHeight: 512,
+    textureWidth: 128,
+    textureHeight: 128,
     waterNormals: new THREE.TextureLoader().load( 'src/assets/textures/waternormals.jpg', function ( texture ) {
       texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
     } ),

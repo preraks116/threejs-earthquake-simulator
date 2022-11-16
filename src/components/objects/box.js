@@ -129,6 +129,7 @@ class Box {
     }
     update() {
         if(this.isMoving) {
+            console.log(this.isMoving)
             let accn = {
                 x: this.axes.x[index],
                 y: this.axes.y[index],
@@ -144,9 +145,9 @@ class Box {
             this.body.velocity.y = this.velocity_.y;
             this.body.velocity.z = this.velocity_.z;
     
-            this.body.position.x += this.velocity_.x*timeStep/50;
+            // this.body.position.x += this.velocity_.x*timeStep/50;
             // this.body.position.y += this.velocity_.y*timeStep;
-            this.body.position.z += this.velocity_.z*timeStep/50;
+            // this.body.position.z += this.velocity_.z*timeStep/50;
             // console.log(this.body.position)
     
             if(this.body) {

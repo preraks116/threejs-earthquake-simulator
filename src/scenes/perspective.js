@@ -109,7 +109,7 @@ const sceneObjects = {
       color: 0xffffff,
       dimension: { x: 150, y: 5, z: 150 },
       speed: 1000,
-      mass: 500,
+      mass: 1000,
       linearDamping: 0.3,
       type: "ground1",
       // textures: textures.brick,
