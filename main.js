@@ -470,7 +470,8 @@ function animate() {
   `;
   statsDOM2.innerHTML = `
     <div>
-      <p>Ground Position</p>
+      <h3>Ground Data</h3>
+      <p>Magnitude: ${sceneObjects.cube6.data.magnitude}</p>
       <p>X: ${(sceneObjects.cube6.body.position.x*10).toFixed(5)}</p>
       <p>Y: ${(sceneObjects.cube6.body.position.y*10).toFixed(5)}</p>
       <p>Z: ${(sceneObjects.cube6.body.position.z).toFixed(5)}</p>
