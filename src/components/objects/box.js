@@ -171,13 +171,10 @@ class Box {
                 this.body.position.z = this.axes.displacement.z[index];
                 index++;
             }
-            console.log(this.body.position)
-
-
-            if(this.body) {
-                this.mesh.position.copy(this.body.position);
-                this.mesh.quaternion.copy(this.body.quaternion);
-            }
+        }
+        if(this.body) {
+            this.mesh.position.copy(this.body.position);
+            this.mesh.quaternion.copy(this.body.quaternion);
         }
     }
     onHover() {
