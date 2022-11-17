@@ -3,6 +3,7 @@ import * as CANNON from 'cannon-es';
 import { keyDict } from '../../utils/keyControls';
 import { EventDispatcher } from 'three';
 import { data } from '../../assets/data/ahmedabad/20221116_1668621506.68514_1/data'
+// import { data } from '../../assets/data/indonesia/data'
 import * as GSAP from "gsap";
 
 // var GROUP1 = 1;
@@ -45,12 +46,29 @@ class Box {
         this.data = data
         var contents = this.data.x
         // split contents with space and \n as delimiter
-        this.axes = {
-            x: this.data.x.split(/[\s\n]+/).map(Number),
-            y: this.data.y.split(/[\s\n]+/).map(Number),
-            z: this.data.z.split(/[\s\n]+/).map(Number)
+        this.axes = {}
+        if(this.data.location === 'ahmedabad'){
+            this.axes = {
+                x: this.data.x.split(/[\s\n]+/).map(Number),
+                y: this.data.y.split(/[\s\n]+/).map(Number),
+                z: this.data.z.split(/[\s\n]+/).map(Number)
+            }
         }
-        var lines = contents.split(/[\s\n]+/);
+        else if(this.data.location === 'indonesia'){
+            this.axes = {
+                displacement: {
+                    x: this.data.displacement.x.split(/[\s\n]+/).map(Number),
+                    y: this.data.displacement.y.split(/[\s\n]+/).map(Number),
+                    z: this.data.displacement.z.split(/[\s\n]+/).map(Number)
+                },
+                velocity: {
+                    x: this.data.velocity.x.split(/[\s\n]+/).map(Number),
+                    y: this.data.velocity.y.split(/[\s\n]+/).map(Number),
+                    z: this.data.velocity.z.split(/[\s\n]+/).map(Number)
+                }
+            }
+        }
+        // var lines = contents.split(/[\s\n]+/);
         console.log(this.axes)
 
 
@@ -129,16 +147,33 @@ class Box {
     }
     update() {
         if(this.isMoving) {
-            console.log(this.isMoving)
-            let accn = {
-                x: this.axes.x[index],
-                y: this.axes.y[index],
-                z: this.axes.z[index]
+            if(this.data.location === 'ahmedabad'){
+                console.log(this.isMoving)
+                let accn = {
+                    x: this.axes.x[index],
+                    y: this.axes.y[index],
+                    z: this.axes.z[index]
+                }
+                index++;
+                this.body.position.x = accn.x*timeStep;
+                this.body.position.y = accn.y*timeStep;
+                this.body.position.z = accn.z*timeStep;
             }
-            index++;
-            this.body.position.x = accn.x*timeStep;
-            this.body.position.y = accn.y*timeStep;
-            this.body.position.z = accn.z*timeStep;
+            else if(this.data.location === 'indonesia'){
+                this.velocity_.x = this.axes.velocity.x[index];
+                this.velocity_.y = this.axes.velocity.y[index];
+                this.velocity_.z = this.axes.velocity.z[index];
+                this.body.velocity.x = this.velocity_.x;
+                this.body.velocity.y = this.velocity_.y;
+                this.body.velocity.z = this.velocity_.z;
+                this.body.position.x = this.axes.displacement.x[index];
+                this.body.position.y = this.axes.displacement.y[index];
+                this.body.position.z = this.axes.displacement.z[index];
+                index++;
+            }
+            console.log(this.body.position)
+
+
             if(this.body) {
                 this.mesh.position.copy(this.body.position);
                 this.mesh.quaternion.copy(this.body.quaternion);

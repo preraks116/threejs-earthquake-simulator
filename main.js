@@ -43,24 +43,25 @@ let amplitudeController, timePeriodController, factorController, faultLineLength
 
 const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 const statsDOM = document.getElementById('stats');
+const statsDOM2 = document.getElementById('stats2');
 const start = document.getElementById('start');
 const stop = document.getElementById('stop');
 
 start.onclick = () => {
   sceneObjects.cube6.isMoving = true;
-  // sceneObjects.cube7.isMoving = true;
-  let tl = GSAP.gsap.timeline();
-  tl.to(sceneObjects.cube6, { duration: 30, amplitude: 3.5 });
-  tl.to(sceneObjects.cube6, { duration: 0.5, timePeriod: 200 });
-  tl.to({}, 5, {});
-  tl.to(sceneObjects.cube6, { duration: 0.5, timePeriod: 300 });
-  tl.to({}, 5, {});
-  tl.to(sceneObjects.cube6, { duration: 0.5, timePeriod: 400 });
-  tl.to({}, 5, {});
-  tl.to(sceneObjects.cube6, { duration: 0.5, timePeriod: 500 });
-  tl.to({}, 5, {});
-  tl.to(sceneObjects.cube6, { duration: 30, factor: 4 });
-  tl.to({}, 5, {});
+  // // sceneObjects.cube7.isMoving = true;
+  // let tl = GSAP.gsap.timeline();
+  // tl.to(sceneObjects.cube6, { duration: 30, amplitude: 3.5 });
+  // tl.to(sceneObjects.cube6, { duration: 0.5, timePeriod: 200 });
+  // tl.to({}, 5, {});
+  // tl.to(sceneObjects.cube6, { duration: 0.5, timePeriod: 300 });
+  // tl.to({}, 5, {});
+  // tl.to(sceneObjects.cube6, { duration: 0.5, timePeriod: 400 });
+  // tl.to({}, 5, {});
+  // tl.to(sceneObjects.cube6, { duration: 0.5, timePeriod: 500 });
+  // tl.to({}, 5, {});
+  // tl.to(sceneObjects.cube6, { duration: 30, factor: 4 });
+  // tl.to({}, 5, {});
 
   // let tl2 = GSAP.gsap.timeline();
   // tl2.to(sceneObjects.cube7, { duration: 30, amplitude: 3.5 });
@@ -77,12 +78,12 @@ start.onclick = () => {
 }
 
 stop.onclick = () => {
-  GSAP.gsap.to(sceneObjects.cube6, { duration: 1, amplitude: 0, onComplete: () => {
-    GSAP.gsap.killTweensOf(sceneObjects.cube6);
-  }});
-  // GSAP.gsap.to(sceneObjects.cube7, { duration: 1, amplitude: 0, onComplete: () => {
-  //   GSAP.gsap.killTweensOf(sceneObjects.cube7);
+  // GSAP.gsap.to(sceneObjects.cube6, { duration: 1, amplitude: 0, onComplete: () => {
+  //   GSAP.gsap.killTweensOf(sceneObjects.cube6);
   // }});
+  // // GSAP.gsap.to(sceneObjects.cube7, { duration: 1, amplitude: 0, onComplete: () => {
+  // //   GSAP.gsap.killTweensOf(sceneObjects.cube7);
+  // // }});
   sceneObjects.cube6.isMoving = false;
   // sceneObjects.cube7.isMoving = false;
 }
@@ -238,7 +239,7 @@ async function init() {
 
   // add gui
   const gui = new GUI();
-  const earthquakeFolder = gui.addFolder("Earthquake");
+  // const earthquakeFolder = gui.addFolder("Earthquake");
   const earthquakeFolderProps = {
     get Amplitude() {
       return sceneObjects.cube6.amplitude;
@@ -269,14 +270,14 @@ async function init() {
       // sceneObjects.cube7.faultLineLength = value;
     }
   }
-  factorController = earthquakeFolder.add(earthquakeFolderProps, "Factor", 0.1, 10, 0.1);
-  timePeriodController = earthquakeFolder.add(earthquakeFolderProps, "TimePeriod", 10, 1000, 10);
-  amplitudeController = earthquakeFolder.add(earthquakeFolderProps, "Amplitude", 0, 5, 0.01);
-  faultLineLengthController = earthquakeFolder.add(earthquakeFolderProps, "FaultLineLength", 0, 10, 0.1);
+  // factorController = earthquakeFolder.add(earthquakeFolderProps, "Factor", 0.1, 10, 0.1);
+  // timePeriodController = earthquakeFolder.add(earthquakeFolderProps, "TimePeriod", 10, 1000, 10);
+  // amplitudeController = earthquakeFolder.add(earthquakeFolderProps, "Amplitude", 0, 5, 0.01);
+  // faultLineLengthController = earthquakeFolder.add(earthquakeFolderProps, "FaultLineLength", 0, 10, 0.1);
 
-  amplitudeController.onChange(function(value) {
-    console.log(value);
-  })
+  // amplitudeController.onChange(function(value) {
+  //   console.log(value);
+  // })
   
   const lightingFolder = gui.addFolder("Lighting");
   const directionalLightFolder = lightingFolder.addFolder("Directional Light");
@@ -444,9 +445,9 @@ function animate() {
   stats.begin();
   ThreeMeshUI.update();
   water.material.uniforms[ 'time' ].value += 1.0 / 60.0;
-  amplitudeController.updateDisplay();
-  timePeriodController.updateDisplay();
-  factorController.updateDisplay();
+  // amplitudeController.updateDisplay();
+  // timePeriodController.updateDisplay();
+  // factorController.updateDisplay();
   // renderer.render(scene, camera.camera);
   renderer.render(scene, camera);
   stats.end();
@@ -465,6 +466,14 @@ function animate() {
       <p>Casualties: ${casualties*10} </p>
       <p>Deaths: ${deaths*10} </p>
       <p>Damages (INR): ${damages.toFixed(3)} Cr</p>
+    </div>
+  `;
+  statsDOM2.innerHTML = `
+    <div>
+      <p>Ground Position</p>
+      <p>X: ${(sceneObjects.cube6.body.position.x*10).toFixed(5)}</p>
+      <p>Y: ${(sceneObjects.cube6.body.position.y*10).toFixed(5)}</p>
+      <p>Z: ${(sceneObjects.cube6.body.position.z).toFixed(5)}</p>
     </div>
   `;
 
