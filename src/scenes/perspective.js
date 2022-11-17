@@ -45,7 +45,7 @@ const sceneObjects = {
       // position: { x: 5, y: 0, z: -1.75 },
       position: { x: 1, y: 0, z: 3 },
       color: 0xffffff,
-      dimension: { x: 100, y: 5, z: 100 },
+      dimension: { x: 150, y: 5, z: 150 },
       speed: 1000,
       mass: 1000,
       linearDamping: 0.3,
@@ -1598,20 +1598,6 @@ const sceneObjects = {
     scene,
     world
   ),
-  
-
-  humanhuman: new GLTFModel(
-    {
-      position: { x: 0, y: 14, z: 10 },
-      linearDamping: 0.3,
-      mass: 1,
-      resourceURL: gltfModels.human,
-    },
-    scene,
-    world
-  ),
-
-  
 
   model8_1: new GLTFModel(
     {

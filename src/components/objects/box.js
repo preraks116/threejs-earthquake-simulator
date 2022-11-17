@@ -136,50 +136,14 @@ class Box {
                 z: this.axes.z[index]
             }
             index++;
-            // console.log(index)
-            this.velocity_.x += accn.x*timeStep;
-            this.velocity_.y += accn.y*timeStep;
-            this.velocity_.z += accn.z*timeStep;
-    
-            this.body.velocity.x = this.velocity_.x;
-            this.body.velocity.y = this.velocity_.y;
-            this.body.velocity.z = this.velocity_.z;
-    
-            // this.body.position.x += this.velocity_.x*timeStep/50;
-            // this.body.position.y += this.velocity_.y*timeStep;
-            // this.body.position.z += this.velocity_.z*timeStep/50;
-            // console.log(this.body.position)
-    
+            this.body.position.x = accn.x*timeStep;
+            this.body.position.y = accn.y*timeStep;
+            this.body.position.z = accn.z*timeStep;
             if(this.body) {
                 this.mesh.position.copy(this.body.position);
                 this.mesh.quaternion.copy(this.body.quaternion);
             }
         }
-        // if(this.isMoving) {
-        //     if(this.type === 'ground1') {
-        //         this.body.position.x = (Math.sin(Date.now() / this.timePeriod) + Math.random()) * this.amplitude;
-        //         // this.body.position.x = (Math.sin(Date.now() / this.timePeriod) + Math.random()) * this.amplitude + this.position.x;
-        //         this.body.position.y = Math.sin(Date.now() / this.timePeriod*this.factor) * this.amplitude/this.factor;
-        //         // console.log(this.body.position.z)
-        //         // while(this.body.position.z <= this.position.z + this.faultLineLength && Date.now() % 100 == 0) {
-        //         //     this.body.position.z += 0.01;
-        //         //     console.log(this.body.position.z)
-        //         // }
-        //         // this.body.velocity.x = Math.sin(Date.now() / this.timePeriod) * this.amplitude;
-        //     }
-        //     else if(this.type === 'ground2') {
-        //         this.body.position.x = (Math.sin(Date.now() / this.timePeriod) + Math.random()) * this.amplitude + this.position.x;
-        //         this.body.position.y = Math.sin(Date.now() / this.timePeriod*this.factor) * this.amplitude/this.factor;
-        //         // this.body.velocity.x = Math.sin(Date.now() / this.timePeriod) * this.amplitude;
-        //     }
-        //     // this.body.position.x = Math.sin(Date.now() / 1000) * 3;
-    
-        //     // threejs part copying cannon part
-            
-        // }
-        // index = Math.floor((Date.now() - startTime)/5)
-        // console.log(index)
-        
     }
     onHover() {
         this.mesh.material.color.setHex(this.hoverColor);
