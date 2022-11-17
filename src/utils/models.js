@@ -104,6 +104,24 @@ const gltfModels = {
         scale: 0.35,
         fallVal: 9,
         killVal: 20
+    },
+    chair: {
+        file: 'building/low_poly_chair.glb',
+        type: 'chair',
+        mass: 0.1,
+        Y: 3.5,
+        scale: 0.2,
+        fallVal: 9,
+        killVal: 20
+    },
+    table: {
+        file: 'building/table.glb',
+        type: 'table',
+        mass: 0.1,
+        Y: 3.5,
+        scale: 0.75,
+        fallVal: 9,
+        killVal: 20
     }
 }
 
